@@ -14,7 +14,7 @@ const socialLinks = [
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/paul-agbogun01",
+    url: "https://linkedin.com/in/paul-agbogun01",
     icon: Linkedin,
   },
   {
