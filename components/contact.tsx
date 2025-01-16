@@ -4,27 +4,27 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail, X } from "lucide-react";
 
 const socialLinks = [
   {
     name: "GitHub",
-    url: "https://github.com",
+    url: "https://github.com/paul1029-ife",
     icon: Github,
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com",
+    url: "https://linkedin.com/paul-agbogun01",
     icon: Linkedin,
   },
   {
-    name: "Twitter",
-    url: "https://twitter.com",
-    icon: Twitter,
+    name: "x",
+    url: "https://x.com/theactual001",
+    icon: X,
   },
   {
     name: "Email",
-    url: "mailto:hello@example.com",
+    url: "mailto:paul.agbogun@gmail.com",
     icon: Mail,
   },
 ];
@@ -38,7 +38,7 @@ export function ContactSection() {
             Get in Touch
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Let's work together on your next project
+            Let&apos;s work together on your next project
           </p>
         </div>
         <div className="mt-16 grid gap-32 lg:grid-cols-2">
