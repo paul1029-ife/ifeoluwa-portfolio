@@ -18,15 +18,15 @@ const projects = [
     description:
       "An online marketplace for buying and selling products with crypto wallet integration.",
     image: "/placeholder.svg?height=400&width=600",
-    link: "#",
+    link: `/projects/aje`,
     tags: ["Next.js", "TypeScript", "Web3"],
   },
   {
     title: "nibo",
     description:
-      "A platform for wholesalers to manage products and stores efficiently with real time data for stores locations.",
+      "A platform for wholesalers to manage products and stores efficiently with real-time data for store locations.",
     image: "/placeholder.svg?height=400&width=600",
-    link: "#",
+    link: `/projects/nibo`,
     tags: ["React", "Node.js", "MongoDB"],
   },
   {
@@ -34,7 +34,7 @@ const projects = [
     description:
       "A goal-based learning platform with personalized paths and progress tracking.",
     image: "/placeholder.svg?height=400&width=600",
-    link: "#",
+    link: `/projects/be-you`,
     tags: ["Next.js", "TypeScript", "AI"],
   },
 ];
