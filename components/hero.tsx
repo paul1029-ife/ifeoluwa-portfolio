@@ -68,22 +68,22 @@ export function HeroSection() {
           >
             {/* Social Links - Add your preferred social media links */}
             <Link
-              href="https://github.com"
+              href="https://github.com/paul1029-ife"
               className="text-muted-foreground hover:text-primary"
             >
               GitHub
             </Link>
             <Link
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/paul-agbogun01/"
               className="text-muted-foreground hover:text-primary"
             >
               LinkedIn
             </Link>
             <Link
-              href="https://twitter.com"
+              href="https://x.com/theactual001"
               className="text-muted-foreground hover:text-primary"
             >
-              Twitter
+              X
             </Link>
           </motion.div>
         </div>
