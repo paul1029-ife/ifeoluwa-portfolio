@@ -13,6 +13,18 @@ export const metadata = {
   metadataBase: new URL("https://ifeoluwa-portfolio-five.vercel.app"),
   title: "Ifeoluwa's Portfolio",
   description: "Portfolio showcasing frontend development skills and projects",
+  keywords: [
+    "Ifeoluwa",
+    "Frontend Developer",
+    "Portfolio",
+    "Web Development",
+    "JavaScript",
+    "React",
+    "Projects",
+    "Tech Skills",
+    "Developer Portfolio",
+  ],
+  author: "Ifeoluwa Agbogun",
   openGraph: {
     title: "Ifeoluwa's Portfolio",
     description:
