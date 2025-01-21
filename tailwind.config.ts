@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { Config } from "tailwindcss";
 
 export default {
@@ -15,10 +17,12 @@ export default {
       keyframes: {
         spotlight: {
           "0%": {
+            //@ts-expect-error
             opacity: 0,
             transform: "translate(-72%, -62%) scale(0.5)",
           },
           "100%": {
+            //@ts-expect-error
             opacity: 1,
             transform: "translate(-50%,-40%) scale(1)",
           },
