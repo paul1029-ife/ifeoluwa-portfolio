@@ -10,30 +10,18 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
+  metadataBase: new URL("https://ifeoluwa-portfolio-five.vercel.app"),
   title: "Ifeoluwa's Portfolio",
-  description:
-    "A portfolio showcasing Ifeoluwa's frontend development skills, expertise, and projects. Explore professional work, personal projects, and technical accomplishments.",
-  keywords: [
-    "Ifeoluwa",
-    "Frontend Developer",
-    "Portfolio",
-    "Web Development",
-    "JavaScript",
-    "React",
-    "Projects",
-    "Tech Skills",
-    "Developer Portfolio",
-  ],
-  author: "Ifeoluwa",
+  description: "Portfolio showcasing frontend development skills and projects",
   openGraph: {
     title: "Ifeoluwa's Portfolio",
     description:
       "Showcasing Ifeoluwa's skills, projects, and expertise in frontend development.",
-    url: "https://ifeoluwa-portfolio.com",
+    url: "https://ifeoluwa-portfolio-five.vercel.app",
     type: "website",
     images: [
       {
-        url: "https://ifeoluwa-portfolio.com/og-image.jpg",
+        url: "/images/og-image.jpeg", // Resolved with metadataBase
         alt: "Ifeoluwa's Portfolio",
         width: 1200,
         height: 630,
@@ -45,12 +33,10 @@ export const metadata = {
     title: "Ifeoluwa's Portfolio",
     description:
       "Discover Ifeoluwa's work and projects in frontend development.",
-    creator: "@theactual001",
-    images: ["https://ifeoluwa-portfolio.com/twitter-image.jpg"],
+    images: ["/images/og-image.jpeg"], // Resolved with metadataBase
   },
-  viewport: "width=device-width, initial-scale=1.0",
-  robots: "index, follow",
 };
+
 export default function RootLayout({
   children,
 }: {

@@ -96,9 +96,9 @@ export function ContactSection() {
             <div>
               <h3 className="text-lg font-semibold">Location</h3>
               <p className="mt-2 text-muted-foreground">
-                San Francisco, CA
+                Lagos State, LA
                 <br />
-                United States
+                Nigeria
               </p>
             </div>
           </motion.div>
