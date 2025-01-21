@@ -91,7 +91,7 @@ export function AboutSection() {
               <div className="mt-8">
                 <Button
                   className="gap-2"
-                  onClick={() => window.open("/resume.pdf")}
+                  onClick={() => window.open("/resume-paul.pdf")}
                 >
                   <Download className="h-4 w-4" />
                   Download Resume

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { BadgeCheck, Building2, Calendar, ExternalLink } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 const experiences = [
   {
@@ -45,124 +46,152 @@ const experiences = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
 export function ExperienceSection() {
   return (
-    <section id="experience" className="w-full py-8 md:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative">
-          {/* Background gradient */}
-          <div className="absolute inset-0 -z-10 overflow-hidden">
-            <div className="absolute left-[10%] top-0 h-48 w-48 rounded-full bg-primary/10 blur-3xl md:h-72 md:w-72" />
-            <div className="absolute right-[10%] bottom-0 h-48 w-48 rounded-full bg-primary/10 blur-3xl md:h-72 md:w-72" />
-          </div>
+    <section
+      id="experience"
+      className="relative w-full overflow-hidden py-16 md:py-24"
+    >
+      {/* Enhanced background gradient */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/4 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute right-1/4 bottom-0 h-96 w-96 translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
+      </div>
 
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          className="relative"
+        >
           {/* Header */}
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <motion.div className="text-center" variants={itemVariants}>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
               Experience
             </h2>
-            <p className="mt-3 text-base text-muted-foreground sm:text-lg">
+            <p className="mt-4 text-base text-muted-foreground sm:text-lg">
               My professional journey
             </p>
           </motion.div>
 
           {/* Timeline */}
-          <div className="relative mt-8 md:mt-16">
-            {/* Timeline line - Only visible on large screens */}
-            <div className="absolute left-4 top-0 hidden h-full w-0.5 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0 md:block md:left-1/2" />
+          <div className="relative mt-16">
+            {/* Timeline line */}
+            <div className="absolute left-4 top-0 h-full w-0.5 bg-gradient-to-b from-transparent via-border to-transparent md:left-1/2" />
 
             {/* Experience cards */}
-            <div className="space-y-8 md:space-y-12">
+            <div className="space-y-16">
               {experiences.map((experience, index) => (
                 <div key={experience.title} className="relative">
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className={`relative mx-auto w-full md:w-5/12 ${
+                    variants={itemVariants}
+                    className={`relative mx-auto flex w-full flex-col md:w-[calc(50%-2rem)] ${
                       index % 2 === 0
                         ? "md:mr-auto md:pr-8"
                         : "md:ml-auto md:pl-8"
                     }`}
                   >
-                    {/* Timeline dot - Only visible on large screens */}
+                    {/* Timeline dot */}
                     <div
-                      className={`absolute top-8 hidden h-4 w-4 rounded-full border-2 border-primary bg-background md:block ${
-                        index % 2 === 0
-                          ? "right-0 translate-x-1/2"
-                          : "left-0 -translate-x-1/2"
+                      className={`absolute top-8 hidden h-4 w-4 rounded-full border-4 border-primary bg-background md:block ${
+                        index % 2 === 0 ? "-right-10" : "-left-10"
                       }`}
                     />
 
                     {/* Card */}
-                    <div className="group relative rounded-lg bg-card p-4 shadow-lg transition-shadow hover:shadow-xl sm:p-6">
-                      {/* Header */}
-                      <div className="flex items-center justify-between gap-2">
-                        <h3 className="text-lg font-semibold sm:text-xl">
-                          {experience.title}
-                        </h3>
-                        <ExternalLink className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100 sm:h-5 sm:w-5" />
-                      </div>
+                    <Card className="group relative overflow-hidden p-6 transition-all hover:shadow-lg">
+                      {/* Subtle gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
 
-                      {/* Company and Period */}
-                      <div className="mt-2 flex flex-wrap gap-3 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Building2 className="h-4 w-4" />
-                          {experience.company}
+                      {/* Content */}
+                      <div className="relative">
+                        {/* Header */}
+                        <div className="flex items-center justify-between gap-4">
+                          <h3 className="text-xl font-semibold tracking-tight">
+                            {experience.title}
+                          </h3>
+                          <ExternalLink className="h-5 w-5 opacity-0 transition-opacity group-hover:opacity-100" />
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-4 w-4" />
-                          {experience.period}
+
+                        {/* Company and Period */}
+                        <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-1.5">
+                            <Building2 className="h-4 w-4" />
+                            <span>{experience.company}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <Calendar className="h-4 w-4" />
+                            <span>{experience.period}</span>
+                          </div>
                         </div>
+
+                        {/* Description */}
+                        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                          {experience.description}
+                        </p>
+
+                        {/* Skills */}
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {experience.skills.map((skill) => (
+                            <span
+                              key={skill}
+                              className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Highlights */}
+                        <ul className="mt-6 space-y-3">
+                          {experience.highlights.map((highlight, i) => (
+                            <motion.li
+                              key={highlight}
+                              initial={{ opacity: 0, x: -10 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{
+                                duration: 0.3,
+                                delay: 0.2 + i * 0.1,
+                              }}
+                              className="flex items-start gap-2 text-sm text-muted-foreground"
+                            >
+                              <BadgeCheck className="h-5 w-5 shrink-0 text-primary" />
+                              <span className="leading-tight">{highlight}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
                       </div>
-
-                      {/* Description */}
-                      <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-                        {experience.description}
-                      </p>
-
-                      {/* Skills */}
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {experience.skills.map((skill) => (
-                          <span
-                            key={skill}
-                            className="rounded-full bg-primary/10 px-2.5 py-1 text-xs text-primary sm:text-sm"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Highlights */}
-                      <ul className="mt-4 space-y-2">
-                        {experience.highlights.map((highlight, i) => (
-                          <motion.li
-                            key={highlight}
-                            initial={{ opacity: 0, x: -10 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.3, delay: 0.1 + i * 0.1 }}
-                            className="flex items-center gap-2 text-xs text-muted-foreground sm:text-sm"
-                          >
-                            <BadgeCheck className="h-4 w-4 shrink-0 text-primary" />
-                            {highlight}
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </div>
+                    </Card>
                   </motion.div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
