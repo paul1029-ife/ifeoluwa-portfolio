@@ -7,27 +7,26 @@ import { Card } from "@/components/ui/card";
 const experiences = [
   {
     title: "Frontend Developer Intern",
-    company: "Tech Company",
-    period: "2023 - Present",
-    description:
-      "Working on building responsive web applications using React and Next.js",
+    company: "Aje",
+    period: "2024 - Present",
+    description: "Working on building responsive web applications Next.js",
     skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
     highlights: [
-      "Developed 5+ responsive web applications",
-      "Improved site performance by 40%",
-      "Collaborated with 10+ team members",
+      "Developed the main Aje web applications",
+      "Improved site performance by 20%",
+      "Collaborated with 5+ team members",
     ],
   },
   {
-    title: "MERN Stack Learning",
-    company: "Self-Learning",
-    period: "2023",
+    title: "Frontend Developer",
+    company: "Nibo",
+    period: "2024 - Present",
     description:
-      "Developing full-stack applications using MongoDB, Express, React, and Node.js",
+      "Integrating third party api's (Google maps) and CRUD operations with GraphQl",
     skills: ["MongoDB", "Express", "React", "Node.js"],
     highlights: [
-      "Built 3 full-stack applications",
-      "Implemented REST APIs",
+      "Built a modern PWA",
+      "Implemented Appolo GraphQl",
       "Deployed on cloud platforms",
     ],
   },

@@ -67,13 +67,13 @@ export function AboutSection() {
                     </p>
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-3xl font-bold">20+</h3>
+                    <h3 className="text-3xl font-bold">10+</h3>
                     <p className="text-sm text-muted-foreground">
                       Projects Completed
                     </p>
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-3xl font-bold">5+</h3>
+                    <h3 className="text-3xl font-bold">2+</h3>
                     <p className="text-sm text-muted-foreground">
                       Happy Clients
                     </p>
