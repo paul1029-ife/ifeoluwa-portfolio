@@ -4,9 +4,10 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Moon, Sun } from "lucide-react";
+import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -22,6 +23,7 @@ export function Navbar() {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +43,7 @@ export function Navbar() {
       transition={{ duration: 0.3 }}
     >
       <div className="container flex h-16 items-center justify-between px-4">
+        {/* Desktop Navigation */}
         <nav className="hidden space-x-6 md:flex">
           {navItems.map((item) => (
             <Link
@@ -56,6 +59,36 @@ export function Navbar() {
             </Link>
           ))}
         </nav>
+
+        {/* Mobile Navigation */}
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild className="md:hidden">
+            <Button variant="ghost" size="icon">
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-64">
+            <nav className="flex flex-col space-y-4 mt-8">
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                    pathname === item.path
+                      ? "text-primary"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
+          </SheetContent>
+        </Sheet>
+
+        {/* Theme Toggle Button */}
         <Button
           variant="ghost"
           size="icon"

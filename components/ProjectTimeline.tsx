@@ -245,7 +245,7 @@ interface TimelineNodeProps {
 
 const TimelineNode: React.FC<TimelineNodeProps> = ({ accentColor, delay }) => (
   <motion.div
-    className={`absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-${accentColor}-500`}
+    className={`absolute left-0 md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full bg-${accentColor}-500`}
     whileInView={{
       scale: [1, 1.5, 1],
       transition: { duration: 0.5, delay },
@@ -271,54 +271,62 @@ const PhaseCard: React.FC<PhaseCardProps> = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: isEven ? -50 : 50 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, x: 0, y: 50 }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.2 }}
-      className={`relative grid grid-cols-2 gap-8 mb-16 ${
-        isEven ? "" : "direction-rtl"
-      }`}
+      className="relative mb-8 md:mb-16"
     >
-      <div className={`${isEven ? "text-right" : "col-start-2"}`}>
-        <Card className="relative group hover:shadow-lg transition-all duration-300">
-          <CardHeader>
-            <div className="flex items-center gap-2 mb-2">
-              <Icon className={`h-5 w-5 text-${accentColor}-500`} />
-              <span className="text-sm font-medium text-muted-foreground">
-                {phase.date}
-              </span>
-            </div>
-            <CardTitle className="text-xl mb-2">{phase.title}</CardTitle>
-            <p className="text-sm text-muted-foreground">{phase.description}</p>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex flex-wrap gap-2">
-                {phase.services.map((service: ServiceType) => (
-                  <span
-                    key={service}
-                    className={`rounded-full bg-${accentColor}-100 px-3 py-1 text-xs font-medium text-${accentColor}-700`}
-                  >
-                    {service}
-                  </span>
-                ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 pl-8 md:pl-0">
+        <div
+          className={`${
+            isEven ? "md:text-right md:col-span-1" : "md:col-start-2"
+          }`}
+        >
+          <Card className="relative group hover:shadow-lg transition-all duration-300">
+            <CardHeader>
+              <div className="flex items-center gap-2 mb-2">
+                <Icon className={`h-5 w-5 text-${accentColor}-500`} />
+                <span className="text-sm font-medium text-muted-foreground">
+                  {phase.date}
+                </span>
               </div>
-              <ul className="space-y-2">
-                {phase.achievements.map((achievement: any) => (
-                  <li
-                    key={achievement}
-                    className="flex items-center text-sm gap-2"
-                  >
-                    <CheckCircle2
-                      className={`h-4 w-4 text-${accentColor}-500 flex-shrink-0`}
-                    />
-                    <span>{achievement}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </CardContent>
-        </Card>
+              <CardTitle className="text-lg md:text-xl mb-2">
+                {phase.title}
+              </CardTitle>
+              <p className="text-sm text-muted-foreground">
+                {phase.description}
+              </p>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex flex-wrap gap-2">
+                  {phase.services.map((service: ServiceType) => (
+                    <span
+                      key={service}
+                      className={`rounded-full bg-${accentColor}-100 px-3 py-1 text-xs font-medium text-${accentColor}-700`}
+                    >
+                      {service}
+                    </span>
+                  ))}
+                </div>
+                <ul className="space-y-2">
+                  {phase.achievements.map((achievement: any) => (
+                    <li
+                      key={achievement}
+                      className="flex items-center text-sm gap-2"
+                    >
+                      <CheckCircle2
+                        className={`h-4 w-4 text-${accentColor}-500 flex-shrink-0`}
+                      />
+                      <span>{achievement}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
       <TimelineNode accentColor={accentColor} delay={index * 0.2} />
     </motion.div>
@@ -334,27 +342,27 @@ const ProjectTimeline: React.FC<ProjectTimelineProps> = ({ projectId }) => {
   if (!project) return null;
 
   return (
-    <div className="container mx-auto px-4 py-24">
+    <div className="container mx-auto px-4 py-12 md:py-24">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-16"
+        className="text-center mb-8 md:mb-16"
       >
         <h1
-          className={`text-4xl font-bold tracking-tight sm:text-5xl bg-gradient-to-r ${project.theme} bg-clip-text text-transparent mb-4`}
+          className={`text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight bg-gradient-to-r ${project.theme} bg-clip-text text-transparent mb-4`}
         >
           {project.title}
         </h1>
-        <p className="text-xl text-muted-foreground mb-6">
+        <p className="text-lg md:text-xl text-muted-foreground mb-6">
           {project.description}
         </p>
-        <div className="flex justify-center gap-8">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8">
+          <div className="flex items-center justify-center gap-2">
             <Clock className={`h-5 w-5 text-${project.accentColor}-500`} />
             <span>{project.duration}</span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2">
             <Users className={`h-5 w-5 text-${project.accentColor}-500`} />
             <span>{project.team}</span>
           </div>
@@ -363,7 +371,7 @@ const ProjectTimeline: React.FC<ProjectTimelineProps> = ({ projectId }) => {
 
       <div className="relative">
         <div
-          className={`absolute left-1/2 h-full w-px bg-${project.accentColor}-200 -translate-x-1/2`}
+          className={`absolute left-4 md:left-1/2 h-full w-px bg-${project.accentColor}-200 md:-translate-x-1/2`}
         />
 
         {project.phases.map((phase: any, index: number) => (

@@ -35,7 +35,7 @@ const projects: Project[] = [
     title: "Aje",
     description:
       "An online marketplace for buying and selling products with crypto wallet integration.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/ajelogo.png",
     link: "/aje",
     tags: ["Next.js", "TypeScript", "Web3"],
   },
@@ -43,8 +43,8 @@ const projects: Project[] = [
     id: "nibo",
     title: "nibo",
     description:
-      "A platform for wholesalers to manage products and stores efficiently with real-time data for store locations.",
-    image: "/placeholder.svg?height=400&width=600",
+      "A platform for wholesalers to manage products efficiently with real-time data for store locations.",
+    image: "/Nibo.svg",
     link: "/nibo",
     tags: ["React", "Node.js", "MongoDB"],
   },
@@ -53,7 +53,7 @@ const projects: Project[] = [
     title: "BeYou",
     description:
       "A goal-based learning platform with personalized paths and progress tracking.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/image.png",
     link: "/be-you",
     tags: ["Next.js", "TypeScript", "AI"],
   },
@@ -79,7 +79,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => (
             src={project.image}
             alt={`Thumbnail for ${project.title}`}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-110"
+            className="object-contain transition-transform duration-300 group-hover:scale-110"
           />
         </div>
         <CardHeader className="p-4">
