@@ -54,7 +54,7 @@ const skills = [
     category: "Backend",
     proficiency: 80,
     icon: Server,
-    technologies: ["Express", "REST APIs", "Middleware", "Authentication"],
+    technologies: ["Express", "Middleware", "Authentication"],
   },
   {
     name: "Database",
@@ -66,7 +66,7 @@ const skills = [
   {
     name: "Development Tools",
     category: "Tools",
-    proficiency: 85,
+    proficiency: 90,
     icon: Construction,
     technologies: ["Git", "VS Code", "npm", "Webpack"],
   },
