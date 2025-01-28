@@ -21,6 +21,27 @@ export function Navbar() {
   const [activeSection, setActiveSection] = React.useState("hero");
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
+  const menuRef = React.useRef<HTMLDivElement>(null);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -70,7 +91,10 @@ export function Navbar() {
       transition={{ duration: 0.3 }}
     >
       <div className="container flex h-20 items-center justify-between px-4">
-        <Link href={"/"} className="text-lg font-bold text-primary">
+        <Link
+          href={"/"}
+          className="hidden md:block text-lg font-bold text-primary"
+        >
           &lt; paul1029-ife /&gt;
         </Link>
 
@@ -101,17 +125,30 @@ export function Navbar() {
         {/* Mobile Navigation */}
         <div className="md:hidden">
           <Button
+            ref={buttonRef}
             variant="ghost"
             size="icon"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            <span className="sr-only">Toggle menu</span>
+            <motion.div
+              key={isOpen as unknown as string}
+              initial={{ opacity: 0, rotate: isOpen ? 90 : -90 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {isOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
+              <span className="sr-only">Toggle menu</span>
+            </motion.div>
           </Button>
 
           <AnimatePresence>
             {isOpen && (
               <motion.nav
+                ref={menuRef}
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
