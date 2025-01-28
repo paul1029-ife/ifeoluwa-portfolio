@@ -41,7 +41,7 @@ export function ContactSection() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-2">
+        <div className="mt-16 grid gap-8 md:grid-cols-2 md:gap-12">
           {/* Social Links Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -56,14 +56,17 @@ export function ContactSection() {
                 Let&apos;s collaborate or chat—reach out through any of these
                 platforms.
               </p>
-              <div className="mt-6 flex gap-4">
+              <div className="mt-6 flex flex-wrap gap-4">
                 {socialLinks.map((link) => (
-                  <a
+                  <motion.a
                     key={link.name}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-lg bg-primary/10 px-4 py-3 text-primary transition-all hover:bg-primary/20 hover:shadow-md"
+                    className="flex items-center gap-2 rounded-lg bg-primary/10 px-4 py-3 text-primary transition-all hover:bg-primary/20 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label={`Visit my ${link.name} profile`}
                   >
                     {link.icon === "x" ? (
                       <Image
@@ -77,7 +80,7 @@ export function ContactSection() {
                       <link.icon className="h-5 w-5" />
                     )}
                     <span className="text-sm font-medium">{link.name}</span>
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </div>
@@ -101,12 +104,15 @@ export function ContactSection() {
             </div>
             <div>
               <h3 className="text-2xl font-semibold">Email Me</h3>
-              <a
+              <motion.a
                 href="mailto:paul.agbogun@gmail.com"
-                className="mt-2 inline-block text-primary underline underline-offset-4 hover:text-primary/80"
+                className="mt-2 inline-block text-primary underline underline-offset-4 hover:text-primary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Send me an email"
               >
                 paul.agbogun@gmail.com
-              </a>
+              </motion.a>
             </div>
           </motion.div>
         </div>
