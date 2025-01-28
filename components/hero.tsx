@@ -7,7 +7,10 @@ import { GithubIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="container relative flex min-h-screen items-center justify-center">
+    <section
+      id="hero"
+      className="container relative flex min-h-screen items-center justify-center"
+    >
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <motion.span
@@ -66,34 +69,7 @@ export function HeroSection() {
             </Link>
           </motion.div>
 
-          <motion.div
-            className="mt-16 flex items-center justify-center gap-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <Link
-              href="https://github.com/paul1029-ife"
-              aria-label="GitHub"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <GithubIcon className="h-6 w-6" />
-            </Link>
-            <Link
-              href="https://linkedin.com/in/paul-agbogun01/"
-              aria-label="LinkedIn"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <LinkedinIcon className="h-6 w-6" />
-            </Link>
-            <Link
-              href="https://x.com/theactual001"
-              aria-label="Twitter"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <TwitterIcon className="h-6 w-6" />
-            </Link>
-          </motion.div>
+          <SocialIcons />
         </div>
       </div>
     </section>
@@ -101,3 +77,92 @@ export function HeroSection() {
 }
 
 export default HeroSection;
+
+const SocialIcons = () => {
+  const iconAnimation = {
+    rest: {
+      scale: 1,
+      rotate: 0,
+    },
+    hover: {
+      scale: 1.1,
+      rotate: [0, -10, 10, 0],
+      transition: {
+        rotate: {
+          duration: 0.4,
+          ease: "easeInOut",
+        },
+        scale: {
+          duration: 0.2,
+          ease: "easeInOut",
+        },
+      },
+    },
+    tap: {
+      scale: 0.95,
+      transition: {
+        duration: 0.1,
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      className="mt-16 flex items-center justify-center gap-6"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.4 }}
+    >
+      <motion.div
+        initial="rest"
+        whileHover="hover"
+        whileTap="tap"
+        animate="rest"
+      >
+        <Link
+          href="https://github.com/paul1029-ife"
+          aria-label="GitHub"
+          className="block text-muted-foreground hover:text-primary transition-colors"
+        >
+          <motion.div variants={iconAnimation}>
+            <GithubIcon className="h-6 w-6" />
+          </motion.div>
+        </Link>
+      </motion.div>
+
+      <motion.div
+        initial="rest"
+        whileHover="hover"
+        whileTap="tap"
+        animate="rest"
+      >
+        <Link
+          href="https://linkedin.com/in/paul-agbogun01/"
+          aria-label="LinkedIn"
+          className="block text-muted-foreground hover:text-primary transition-colors"
+        >
+          <motion.div variants={iconAnimation}>
+            <LinkedinIcon className="h-6 w-6" />
+          </motion.div>
+        </Link>
+      </motion.div>
+
+      <motion.div
+        initial="rest"
+        whileHover="hover"
+        whileTap="tap"
+        animate="rest"
+      >
+        <Link
+          href="https://x.com/theactual001"
+          aria-label="Twitter"
+          className="block text-muted-foreground hover:text-primary transition-colors"
+        >
+          <motion.div variants={iconAnimation}>
+            <TwitterIcon className="h-6 w-6" />
+          </motion.div>
+        </Link>
+      </motion.div>
+    </motion.div>
+  );
+};

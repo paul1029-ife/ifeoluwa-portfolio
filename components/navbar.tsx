@@ -1,17 +1,16 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
-import { Menu, Moon, Sun } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import Link from "next/link";
 
 const navItems = [
-  { name: "Home", section: "home" },
+  { name: "Home", section: "hero" },
   { name: "About", section: "about" },
   { name: "Skills", section: "skills" },
-  { name: "Services", section: "services" },
   { name: "Experience", section: "experience" },
   { name: "Projects", section: "projects" },
   { name: "Contact", section: "contact" },
@@ -19,11 +18,10 @@ const navItems = [
 
 export function Navbar() {
   const { theme, setTheme } = useTheme();
-  const [activeSection, setActiveSection] = React.useState("home");
+  const [activeSection, setActiveSection] = React.useState("hero");
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
 
-  // Handle scroll events for navbar background
   React.useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -32,7 +30,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle intersection observer for section detection
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -48,7 +45,6 @@ export function Navbar() {
       }
     );
 
-    // Observe all sections
     navItems.forEach(({ section }) => {
       const element = document.getElementById(section);
       if (element) observer.observe(element);
@@ -57,7 +53,6 @@ export function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  // Smooth scroll function
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -75,13 +70,9 @@ export function Navbar() {
       transition={{ duration: 0.3 }}
     >
       <div className="container flex h-20 items-center justify-between px-4">
-        {/* Logo or Branding */}
-        <button
-          onClick={() => scrollToSection("home")}
-          className="text-lg font-bold text-primary"
-        >
+        <Link href={"/"} className="text-lg font-bold text-primary">
           &lt; paul1029-ife /&gt;
-        </button>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden space-x-6 md:flex">
@@ -108,37 +99,56 @@ export function Navbar() {
         </nav>
 
         {/* Mobile Navigation */}
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent
-            side="left"
-            className="w-64 bg-background/95 backdrop-blur-lg"
+        <div className="md:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsOpen(!isOpen)}
           >
-            <nav className="flex flex-col space-y-4 mt-8">
-              {navItems.map((item) => (
-                <button
-                  key={item.section}
-                  onClick={() => {
-                    scrollToSection(item.section);
-                    setIsOpen(false);
-                  }}
-                  className={`text-left text-sm font-medium transition-colors hover:text-primary ${
-                    activeSection === item.section
-                      ? "text-primary"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  {item.name}
-                </button>
-              ))}
-            </nav>
-          </SheetContent>
-        </Sheet>
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            <span className="sr-only">Toggle menu</span>
+          </Button>
+
+          <AnimatePresence>
+            {isOpen && (
+              <motion.nav
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="fixed top-0 right-0 z-40 h-screen w-64 bg-background/95 p-6 backdrop-blur-lg shadow-lg"
+              >
+                <div className="flex justify-end mb-4">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <X className="h-5 w-5" />
+                  </Button>
+                </div>
+                <div className="flex flex-col space-y-4">
+                  {navItems.map((item) => (
+                    <button
+                      key={item.section}
+                      onClick={() => {
+                        scrollToSection(item.section);
+                        setIsOpen(false);
+                      }}
+                      className={`text-left text-sm font-medium transition-colors hover:text-primary ${
+                        activeSection === item.section
+                          ? "text-primary"
+                          : "text-muted-foreground"
+                      }`}
+                    >
+                      {item.name}
+                    </button>
+                  ))}
+                </div>
+              </motion.nav>
+            )}
+          </AnimatePresence>
+        </div>
 
         {/* Theme Toggle Button */}
         <Button
