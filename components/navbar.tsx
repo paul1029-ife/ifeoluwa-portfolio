@@ -11,7 +11,6 @@ const navItems = [
   { name: "Home", section: "home" },
   { name: "About", section: "about" },
   { name: "Skills", section: "skills" },
-  { name: "Services", section: "services" },
   { name: "Experience", section: "experience" },
   { name: "Projects", section: "projects" },
   { name: "Contact", section: "contact" },
