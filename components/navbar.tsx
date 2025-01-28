@@ -70,7 +70,10 @@ export function Navbar() {
       transition={{ duration: 0.3 }}
     >
       <div className="container flex h-20 items-center justify-between px-4">
-        <Link href={"/"} className="text-lg font-bold text-primary">
+        <Link
+          href={"/"}
+          className="hidden md:block text-lg font-bold text-primary"
+        >
           &lt; paul1029-ife /&gt;
         </Link>
 
@@ -105,8 +108,19 @@ export function Navbar() {
             size="icon"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            <span className="sr-only">Toggle menu</span>
+            <motion.div
+              key={isOpen as unknown as string}
+              initial={{ opacity: 0, rotate: isOpen ? 90 : -90 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {isOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
+              <span className="sr-only">Toggle menu</span>
+            </motion.div>
           </Button>
 
           <AnimatePresence>
