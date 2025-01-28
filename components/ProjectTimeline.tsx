@@ -20,8 +20,10 @@ import {
   GraduationCap,
   BarChart,
   Award,
+  ExternalLink,
 } from "lucide-react";
-import { ProjectId, ProjectsDataType, Phase, ServiceType } from "@/types/types";
+import { ProjectId, ProjectsDataType, Phase } from "@/types/types";
+import { cn } from "@/lib/utils";
 
 const projectsData: ProjectsDataType = {
   aje: {
@@ -32,6 +34,7 @@ const projectsData: ProjectsDataType = {
     team: "4 developers",
     theme: "from-violet-500 to-violet-300",
     accentColor: "violet",
+    liveUrl: "https://aje.africa",
     phases: [
       {
         title: "Discovery & Planning",
@@ -165,6 +168,7 @@ const projectsData: ProjectsDataType = {
         ],
       },
     ],
+    liveUrl: "nibo.ng",
   },
   beyou: {
     title: "BeYou",
@@ -235,22 +239,34 @@ const projectsData: ProjectsDataType = {
         ],
       },
     ],
+    liveUrl: "https://be-you-six.vercel.app",
   },
 } as const;
+const fadeInUp = {
+  initial: { opacity: 0, y: 50 },
+  animate: { opacity: 1, y: 0 },
+};
+
+const scaleAnimation = {
+  initial: { scale: 1 },
+  animate: { scale: [1, 1.5, 1] },
+};
 
 interface TimelineNodeProps {
   accentColor: string;
   delay: number;
 }
 
-const TimelineNode: React.FC<TimelineNodeProps> = ({ accentColor, delay }) => (
+const TimelineNode = ({ accentColor, delay }: TimelineNodeProps) => (
   <motion.div
-    className={`absolute left-0 md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full bg-${accentColor}-500`}
-    whileInView={{
-      scale: [1, 1.5, 1],
-      transition: { duration: 0.5, delay },
-    }}
+    className={cn(
+      "absolute left-0 md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full",
+      `bg-${accentColor}-500`
+    )}
+    variants={scaleAnimation}
+    whileInView="animate"
     viewport={{ once: true }}
+    transition={{ duration: 0.5, delay }}
   />
 );
 
@@ -261,32 +277,28 @@ interface PhaseCardProps {
   accentColor: string;
 }
 
-const PhaseCard: React.FC<PhaseCardProps> = ({
-  phase,
-  isEven,
-  index,
-  accentColor,
-}) => {
+const PhaseCard = ({ phase, isEven, index, accentColor }: PhaseCardProps) => {
   const Icon = phase.icon;
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 0, y: 50 }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      variants={fadeInUp}
+      initial="initial"
+      whileInView="animate"
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.2 }}
       className="relative mb-8 md:mb-16"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 pl-8 md:pl-0">
         <div
-          className={`${
+          className={cn(
             isEven ? "md:text-right md:col-span-1" : "md:col-start-2"
-          }`}
+          )}
         >
           <Card className="relative group hover:shadow-lg transition-all duration-300">
             <CardHeader>
               <div className="flex items-center gap-2 mb-2">
-                <Icon className={`h-5 w-5 text-${accentColor}-500`} />
+                <Icon className={cn(`text-${accentColor}-500`, "h-5 w-5")} />
                 <span className="text-sm font-medium text-muted-foreground">
                   {phase.date}
                 </span>
@@ -301,23 +313,30 @@ const PhaseCard: React.FC<PhaseCardProps> = ({
             <CardContent>
               <div className="space-y-4">
                 <div className="flex flex-wrap gap-2">
-                  {phase.services.map((service: ServiceType) => (
+                  {phase.services.map((service) => (
                     <span
                       key={service}
-                      className={`rounded-full bg-${accentColor}-100 px-3 py-1 text-xs font-medium text-${accentColor}-700`}
+                      className={cn(
+                        "rounded-full px-3 py-1 text-xs font-medium",
+                        `bg-${accentColor}-100`,
+                        `text-${accentColor}-700`
+                      )}
                     >
                       {service}
                     </span>
                   ))}
                 </div>
                 <ul className="space-y-2">
-                  {phase.achievements.map((achievement: any) => (
+                  {phase.achievements.map((achievement) => (
                     <li
                       key={achievement}
                       className="flex items-center text-sm gap-2"
                     >
                       <CheckCircle2
-                        className={`h-4 w-4 text-${accentColor}-500 flex-shrink-0`}
+                        className={cn(
+                          `text-${accentColor}-500`,
+                          "h-4 w-4 flex-shrink-0"
+                        )}
                       />
                       <span>{achievement}</span>
                     </li>
@@ -337,44 +356,71 @@ interface ProjectTimelineProps {
   projectId: ProjectId;
 }
 
-const ProjectTimeline: React.FC<ProjectTimelineProps> = ({ projectId }) => {
+const ProjectTimeline = ({ projectId }: ProjectTimelineProps) => {
   const project = projectsData[projectId];
   if (!project) return null;
 
   return (
     <div className="container mx-auto px-4 py-12 md:py-24">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        variants={fadeInUp}
+        initial="initial"
+        whileInView="animate"
         viewport={{ once: true }}
         className="text-center mb-8 md:mb-16"
       >
         <h1
-          className={`text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight bg-gradient-to-r ${project.theme} bg-clip-text text-transparent mb-4`}
+          className={cn(
+            "text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight bg-clip-text text-transparent mb-4",
+            `bg-gradient-to-r ${project.theme}`
+          )}
         >
           {project.title}
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground mb-6">
           {project.description}
         </p>
-        <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8">
+        <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8 mb-4">
           <div className="flex items-center justify-center gap-2">
-            <Clock className={`h-5 w-5 text-${project.accentColor}-500`} />
+            <Clock
+              className={cn(`text-${project.accentColor}-500`, "h-5 w-5")}
+            />
             <span>{project.duration}</span>
           </div>
           <div className="flex items-center justify-center gap-2">
-            <Users className={`h-5 w-5 text-${project.accentColor}-500`} />
+            <Users
+              className={cn(`text-${project.accentColor}-500`, "h-5 w-5")}
+            />
             <span>{project.team}</span>
           </div>
         </div>
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              "inline-flex items-center gap-2 px-4 py-2 rounded-md transition-colors",
+              `bg-${project.accentColor}-500 hover:bg-${project.accentColor}-600`,
+              "text-white font-medium"
+            )}
+          >
+            View Live Site
+            <ExternalLink className="h-4 w-4" />
+          </a>
+        )}
       </motion.div>
 
       <div className="relative">
         <div
-          className={`absolute left-4 md:left-1/2 h-full w-px bg-${project.accentColor}-200 md:-translate-x-1/2`}
+          className={cn(
+            "absolute left-4 md:left-1/2 h-full w-px",
+            `bg-${project.accentColor}-200`,
+            "md:-translate-x-1/2"
+          )}
         />
 
-        {project.phases.map((phase: any, index: number) => (
+        {project.phases.map((phase, index) => (
           <PhaseCard
             key={phase.title}
             phase={phase}

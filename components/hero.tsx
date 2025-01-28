@@ -3,13 +3,12 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Spotlight } from "./ui/Spotlight";
+import { GithubIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="container relative min-h-screen">
+    <section className="container relative flex min-h-screen items-center justify-center">
       <div className="absolute inset-0 flex items-center justify-center">
-        <Spotlight />
         <div className="mx-auto max-w-4xl px-4 text-center">
           <motion.span
             className="mb-4 block text-lg font-medium text-primary"
@@ -21,25 +20,25 @@ export function HeroSection() {
           </motion.span>
 
           <motion.h1
-            className="mb-6 text-5xl font-bold tracking-tight sm:text-7xl"
+            className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl lg:text-8xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <span className="mt-2 block bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent">
+            <span className="inline-block bg-gradient-to-r from-primary to-primary/70 bg-clip-text pb-3 text-transparent">
               Ifeoluwa Agbogun
             </span>
           </motion.h1>
 
           <motion.p
-            className="mx-auto max-w-2xl text-lg text-muted-foreground"
+            className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            A Frontend Developer specializing in React, Next.js, and TypeScript.
-            Building modern web experiences with a focus on performance and user
-            experience.
+            A Frontend Developer based in Nigeria, I specialize in crafting
+            user-friendly and scalable web applications using React, Next.js,
+            and TypeScript.
           </motion.p>
 
           <motion.div
@@ -49,12 +48,19 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <Link href="/#projects">
-              <Button size="lg" className="min-w-[160px]">
+              <Button
+                size="lg"
+                className="min-w-[160px] transition-all hover:scale-105 hover:shadow-lg"
+              >
                 View Portfolio
               </Button>
             </Link>
             <Link href="/#contact">
-              <Button size="lg" variant="outline" className="min-w-[160px]">
+              <Button
+                size="lg"
+                variant="outline"
+                className="min-w-[160px] transition-all hover:scale-105 hover:shadow-lg"
+              >
                 Contact Me
               </Button>
             </Link>
@@ -66,24 +72,26 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            {/* Social Links - Add your preferred social media links */}
             <Link
               href="https://github.com/paul1029-ife"
-              className="text-muted-foreground hover:text-primary"
+              aria-label="GitHub"
+              className="text-muted-foreground hover:text-primary transition-colors"
             >
-              GitHub
+              <GithubIcon className="h-6 w-6" />
             </Link>
             <Link
               href="https://linkedin.com/in/paul-agbogun01/"
-              className="text-muted-foreground hover:text-primary"
+              aria-label="LinkedIn"
+              className="text-muted-foreground hover:text-primary transition-colors"
             >
-              LinkedIn
+              <LinkedinIcon className="h-6 w-6" />
             </Link>
             <Link
               href="https://x.com/theactual001"
-              className="text-muted-foreground hover:text-primary"
+              aria-label="Twitter"
+              className="text-muted-foreground hover:text-primary transition-colors"
             >
-              X
+              <TwitterIcon className="h-6 w-6" />
             </Link>
           </motion.div>
         </div>
