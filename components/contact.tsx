@@ -1,10 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Github, Linkedin, Mail, X } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
+import Image from "next/image";
 
 const socialLinks = [
   {
@@ -18,9 +16,9 @@ const socialLinks = [
     icon: Linkedin,
   },
   {
-    name: "x",
+    name: "X",
     url: "https://x.com/theactual001",
-    icon: X,
+    icon: "x", // Use a string to identify the custom icon
   },
   {
     name: "Email",
@@ -31,75 +29,84 @@ const socialLinks = [
 
 export function ContactSection() {
   return (
-    <section id="contact" className="container px-4">
+    <section id="contact" className="container px-4 py-16">
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Get in Touch
+          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
+            Let&apos;s Connect
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            Let&apos;s work together on your next project
+          <p className="mt-4 text-lg text-muted-foreground">
+            Whether you have a project in mind or just want to say hi, I&apos;d
+            love to hear from you!
           </p>
         </div>
-        <div className="mt-16 grid gap-32 lg:grid-cols-2">
+
+        <div className="mt-16 grid gap-12 lg:grid-cols-2">
+          {/* Social Links Section */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <form className="space-y-4">
-              <div>
-                <Input placeholder="Name" />
-              </div>
-              <div>
-                <Input type="email" placeholder="Email" />
-              </div>
-              <div>
-                <Input placeholder="Subject" />
-              </div>
-              <div>
-                <Textarea placeholder="Message" rows={6} />
-              </div>
-              <Button type="submit" className="w-full">
-                Send Message
-              </Button>
-            </form>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="space-y-8"
           >
             <div>
-              <h3 className="text-lg font-semibold">Connect with me</h3>
-              <div className="mt-4 flex gap-4">
-                {socialLinks.map((link) => {
-                  const Icon = link.icon;
-                  return (
-                    <a
-                      key={link.name}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-full bg-primary/10 p-2 text-primary transition-colors hover:bg-primary/20"
-                    >
-                      <Icon className="h-5 w-5" />
-                      <span className="sr-only">{link.name}</span>
-                    </a>
-                  );
-                })}
+              <h3 className="text-2xl font-semibold">Find Me Online</h3>
+              <p className="mt-2 text-muted-foreground">
+                Let&apos;s collaborate or chat—reach out through any of these
+                platforms.
+              </p>
+              <div className="mt-6 flex gap-4">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-lg bg-primary/10 px-4 py-3 text-primary transition-all hover:bg-primary/20 hover:shadow-md"
+                  >
+                    {link.icon === "x" ? (
+                      <Image
+                        src="/x.svg" // Ensure this path is correct
+                        alt="X Logo"
+                        width={20}
+                        height={20}
+                        className="h-5 w-5"
+                      />
+                    ) : (
+                      <link.icon className="h-5 w-5" />
+                    )}
+                    <span className="text-sm font-medium">{link.name}</span>
+                  </a>
+                ))}
               </div>
             </div>
+          </motion.div>
+
+          {/* Location Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
             <div>
-              <h3 className="text-lg font-semibold">Location</h3>
+              <h3 className="text-2xl font-semibold">Based In</h3>
               <p className="mt-2 text-muted-foreground">
                 Lagos State, LA
                 <br />
                 Nigeria
               </p>
+            </div>
+            <div>
+              <h3 className="text-2xl font-semibold">Email Me</h3>
+              <a
+                href="mailto:paul.agbogun@gmail.com"
+                className="mt-2 inline-block text-primary underline underline-offset-4 hover:text-primary/80"
+              >
+                paul.agbogun@gmail.com
+              </a>
             </div>
           </motion.div>
         </div>
