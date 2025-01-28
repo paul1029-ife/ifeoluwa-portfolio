@@ -28,6 +28,7 @@ export interface Project {
   team: string;
   theme: string;
   accentColor: string;
+  liveUrl: string;
   phases: Phase[];
 }
 

@@ -7,11 +7,11 @@ import {
   Blocks,
   Component,
   Palette,
-  Library,
+  //Library,
   Construction,
   Terminal,
   Globe,
-  Server,
+  // Server,
   Code2,
 } from "lucide-react";
 
@@ -19,28 +19,24 @@ const skills = [
   {
     name: "React",
     category: "Frontend",
-    proficiency: 90,
     icon: Component,
     technologies: ["Hooks", "Context", "Redux", "React Query"],
   },
   {
     name: "Next.js",
     category: "Frontend",
-    proficiency: 85,
     icon: Blocks,
     technologies: ["App Router", "Server Components", "API Routes", "SSR"],
   },
   {
     name: "TypeScript",
     category: "Frontend",
-    proficiency: 85,
     icon: Code2,
     technologies: ["Types", "Interfaces", "Generics", "Utility Types"],
   },
   {
     name: "Tailwind CSS",
     category: "Frontend",
-    proficiency: 90,
     icon: Palette,
     technologies: [
       "Responsive Design",
@@ -49,44 +45,39 @@ const skills = [
       "Animations",
     ],
   },
-  {
-    name: "Node.js",
-    category: "Backend",
-    proficiency: 80,
-    icon: Server,
-    technologies: ["Express", "Middleware", "Authentication"],
-  },
-  {
-    name: "Database",
-    category: "Backend",
-    proficiency: 75,
-    icon: Library,
-    technologies: ["MongoDB", "SQL", "Prisma"],
-  },
+  // {
+  //   name: "Node.js",
+  //   category: "Backend",
+  //   icon: Server,
+  //   technologies: ["Express", "Middleware", "Authentication"],
+  // },
+  // {
+  //   name: "Database",
+  //   category: "Backend",
+  //   icon: Library,
+  //   technologies: ["MongoDB", "SQL", "Prisma"],
+  // },
   {
     name: "Development Tools",
     category: "Tools",
-    proficiency: 90,
     icon: Construction,
     technologies: ["Git", "VS Code", "npm", "Webpack"],
   },
   {
     name: "Testing",
     category: "Tools",
-    proficiency: 80,
     icon: Terminal,
     technologies: ["Jest", "React Testing Library", "Cypress", "Storybook"],
   },
   {
     name: "Web Standards",
     category: "Frontend",
-    proficiency: 90,
     icon: Globe,
     technologies: ["HTML5", "CSS3", "ES6+", "Accessibility"],
   },
 ];
 
-const categories = ["Frontend", "Backend", "Tools"];
+const categories = ["Frontend", "Tools"];
 
 export function SkillsSection() {
   return (
@@ -99,19 +90,19 @@ export function SkillsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Skills & Technologies
+          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+            Skills & Expertise
           </h2>
           <p className="mt-4 text-muted-foreground">
-            My technical expertise as a Frontend Developer
+            Crafting modern, performant, and user-friendly web experiences
           </p>
         </motion.div>
 
-        <div className="mt-16 space-y-12">
+        <div className="mt-16 space-y-16">
           {categories.map((category, categoryIndex) => (
             <div key={category}>
               <motion.h3
-                className="mb-6 text-xl font-semibold"
+                className="mb-8 text-3xl font-bold text-primary"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -119,7 +110,7 @@ export function SkillsSection() {
               >
                 {category}
               </motion.h3>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {skills
                   .filter((skill) => skill.category === category)
                   .map((skill, index) => (
@@ -130,27 +121,25 @@ export function SkillsSection() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
-                      <Card className="group relative overflow-hidden p-6 transition-all hover:shadow-lg">
+                      <Card className="group relative h-full overflow-hidden p-6 transition-all hover:border-primary hover:shadow-lg">
                         <div className="relative z-10">
-                          <span className="mb-4 flex items-center text-primary">
-                            {React.createElement(skill.icon, {
-                              size: 24,
-                              className:
-                                "transition-transform group-hover:scale-110",
-                            })}
-                          </span>
-                          <h4 className="font-medium">{skill.name}</h4>
-                          <div className="mt-2 h-1.5 w-full rounded-full bg-muted">
-                            <div
-                              className="h-full rounded-full bg-primary transition-all group-hover:bg-primary/80"
-                              style={{ width: `${skill.proficiency}%` }}
-                            />
+                          <div className="mb-4 flex items-center gap-3">
+                            <span className="text-primary">
+                              {React.createElement(skill.icon, {
+                                size: 24,
+                                className:
+                                  "transition-transform group-hover:scale-110",
+                              })}
+                            </span>
+                            <h4 className="text-xl font-medium">
+                              {skill.name}
+                            </h4>
                           </div>
                           <div className="mt-4 flex flex-wrap gap-2">
                             {skill.technologies.map((tech) => (
                               <span
                                 key={tech}
-                                className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary"
+                                className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary"
                               >
                                 {tech}
                               </span>
