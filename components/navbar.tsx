@@ -21,6 +21,27 @@ export function Navbar() {
   const [activeSection, setActiveSection] = React.useState("hero");
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
+  const menuRef = React.useRef<HTMLDivElement>(null);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -104,6 +125,7 @@ export function Navbar() {
         {/* Mobile Navigation */}
         <div className="md:hidden">
           <Button
+            ref={buttonRef}
             variant="ghost"
             size="icon"
             onClick={() => setIsOpen(!isOpen)}
@@ -126,6 +148,7 @@ export function Navbar() {
           <AnimatePresence>
             {isOpen && (
               <motion.nav
+                ref={menuRef}
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
