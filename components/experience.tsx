@@ -77,7 +77,7 @@ const education: ExperienceData[] = [
       "Data Structures",
       "Algorithms",
       "Software Engineering",
-      "Web Development",
+      "Low-level programming",
     ],
     highlights: [
       "Maintaining strong academic performance",
