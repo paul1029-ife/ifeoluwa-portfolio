@@ -83,7 +83,7 @@ export function Navbar() {
 
   return (
     <motion.header
-      className={`fixed top-0 z-50 w-full ${
+      className={`fixed flex items-center justify-center z-50 w-full ${
         isScrolled ? "bg-background/90 backdrop-blur-lg" : "bg-transparent"
       } transition-all duration-300`}
       initial={{ y: -100 }}

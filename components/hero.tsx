@@ -5,9 +5,13 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { GithubIcon, LinkedinIcon, Mail } from "lucide-react";
 
-const FloatingShape = ({ className }: { className: string }) => (
+interface FloatingShapeProps {
+  className: string;
+}
+
+const FloatingShape = ({ className }: FloatingShapeProps) => (
   <motion.div
-    className={`absolute rounded-full dark:bg-gradient-to-br dark:from-primary/20 dark:to-primary/5 bg-gradient-to-br from-primary/10 to-primary/5 blur-3xl ${className}`}
+    className={`absolute rounded-full bg-gradient-to-br from-primary/20 to-primary/5 blur-2xl ${className}`}
     animate={{
       y: [0, -20, 0],
       x: [0, 10, 0],
@@ -23,23 +27,22 @@ const FloatingShape = ({ className }: { className: string }) => (
 );
 
 const GridPattern = () => (
-  <div className="absolute inset-0 dark:bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)] bg-[linear-gradient(rgba(0,0,0,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]" />
+  <div className="absolute -z-20 inset-0 bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]" />
 );
 
 export function HeroSection() {
   return (
     <section
       id="hero"
-      className="container relative flex min-h-screen items-center justify-center overflow-hidden"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden"
     >
       {/* Background Elements */}
       <GridPattern />
-      <FloatingShape className="h-96 w-96 left-1/4 top-1/4 opacity-40" />
-      <FloatingShape className="h-64 w-64 right-1/4 bottom-1/4 opacity-30" />
+      <FloatingShape className="h-96 w-96 -z-20 left-1/4 top-1/4 opacity-40" />
+      <FloatingShape className="h-64 w-64 -z-20 right-1/4 bottom-1/4 opacity-30" />
 
-      {/* Content */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="mx-auto max-w-4xl px-4 text-center">
+      <div className="w-full max-w-4xl px-4 py-8">
+        <div className="flex flex-col items-center justify-center text-center">
           <motion.span
             className="mb-4 block text-lg font-medium text-primary"
             initial={{ opacity: 0, y: 20 }}
@@ -75,21 +78,23 @@ export function HeroSection() {
             className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5 }}
           >
-            <Link href="/#projects">
+            <Link href="/#projects" passHref>
               <Button
                 size="lg"
-                className="min-w-[160px] transition-all hover:scale-105 hover:shadow-lg"
+                className="w-full transition-all hover:scale-105 hover:shadow-lg"
+                aria-label="View Portfolio"
               >
                 View Portfolio
               </Button>
             </Link>
-            <Link href="/#contact">
+            <Link href="/#contact" passHref>
               <Button
                 size="lg"
                 variant="outline"
-                className="min-w-[160px] transition-all hover:scale-105 hover:shadow-lg"
+                className="w-full transition-all hover:scale-105 hover:shadow-lg"
+                aria-label="Contact Me"
               >
                 Contact Me
               </Button>
@@ -103,7 +108,13 @@ export function HeroSection() {
   );
 }
 
-const SocialIcons = () => {
+interface SocialIconProps {
+  href: string;
+  ariaLabel: string;
+  icon: React.ReactNode;
+}
+
+const SocialIcon = ({ href, ariaLabel, icon }: SocialIconProps) => {
   const iconAnimation = {
     rest: {
       scale: 1,
@@ -132,62 +143,42 @@ const SocialIcons = () => {
   };
 
   return (
+    <motion.div initial="rest" whileHover="hover" whileTap="tap" animate="rest">
+      <Link
+        href={href}
+        aria-label={ariaLabel}
+        className="block text-muted-foreground hover:text-primary transition-colors"
+        rel="noopener noreferrer"
+      >
+        <motion.div variants={iconAnimation}>{icon}</motion.div>
+      </Link>
+    </motion.div>
+  );
+};
+
+const SocialIcons = () => {
+  return (
     <motion.div
       className="mt-16 flex items-center justify-center gap-6"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.4 }}
     >
-      <motion.div
-        initial="rest"
-        whileHover="hover"
-        whileTap="tap"
-        animate="rest"
-      >
-        <Link
-          href="https://github.com/paul1029-ife"
-          aria-label="GitHub"
-          className="block text-muted-foreground hover:text-primary transition-colors"
-        >
-          <motion.div variants={iconAnimation}>
-            <GithubIcon className="h-6 w-6" />
-          </motion.div>
-        </Link>
-      </motion.div>
-
-      <motion.div
-        initial="rest"
-        whileHover="hover"
-        whileTap="tap"
-        animate="rest"
-      >
-        <Link
-          href="https://linkedin.com/in/paul-agbogun01/"
-          aria-label="LinkedIn"
-          className="block text-muted-foreground hover:text-primary transition-colors"
-        >
-          <motion.div variants={iconAnimation}>
-            <LinkedinIcon className="h-6 w-6" />
-          </motion.div>
-        </Link>
-      </motion.div>
-
-      <motion.div
-        initial="rest"
-        whileHover="hover"
-        whileTap="tap"
-        animate="rest"
-      >
-        <Link
-          href="mailto:paul.agbogun@gmail.com"
-          aria-label="Email"
-          className="block text-muted-foreground hover:text-primary transition-colors"
-        >
-          <motion.div variants={iconAnimation}>
-            <Mail className="h-6 w-6" />
-          </motion.div>
-        </Link>
-      </motion.div>
+      <SocialIcon
+        href="https://github.com/paul1029-ife"
+        ariaLabel="GitHub"
+        icon={<GithubIcon className="h-6 w-6" />}
+      />
+      <SocialIcon
+        href="https://linkedin.com/in/paul-agbogun01/"
+        ariaLabel="LinkedIn"
+        icon={<LinkedinIcon className="h-6 w-6" />}
+      />
+      <SocialIcon
+        href="mailto:paul.agbogun@gmail.com"
+        ariaLabel="Email"
+        icon={<Mail className="h-6 w-6" />}
+      />
     </motion.div>
   );
 };

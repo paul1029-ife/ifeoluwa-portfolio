@@ -81,7 +81,10 @@ const categories = ["Frontend", "Tools"];
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="container px-4 py-16">
+    <section
+      id="skills"
+      className="flex min-h-screen w-full items-center justify-center py-24"
+    >
       <div className="mx-auto max-w-6xl">
         <motion.div
           className="text-center"
