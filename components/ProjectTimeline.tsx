@@ -174,7 +174,7 @@ const projectsData: ProjectsDataType = {
     description:
       "An interactive learning platform with personalized user experiences",
     duration: "5 months",
-    team: "Frontend developer",
+    team: "CEO, Lead Developer",
     theme: "from-blue-500 to-blue-300",
     accentColor: "blue",
     phases: [
@@ -242,114 +242,111 @@ const projectsData: ProjectsDataType = {
     liveUrl: "https://be-you-six.vercel.app",
   },
 } as const;
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 50 },
-  animate: { opacity: 1, y: 0 },
+const microHover = {
+  scale: 1.02,
+  transition: { duration: 0.2 },
 };
 
-const scaleAnimation = {
-  initial: { scale: 1 },
-  animate: { scale: [1, 1.5, 1] },
+const pulseAnimation = {
+  scale: [1, 1.05, 1],
+  transition: { duration: 0.3 },
 };
 
 interface TimelineNodeProps {
   accentColor: string;
-  delay: number;
 }
 
-const TimelineNode = ({ accentColor, delay }: TimelineNodeProps) => (
+const TimelineNode = ({ accentColor }: TimelineNodeProps) => (
   <motion.div
+    whileHover={pulseAnimation}
     className={cn(
       "absolute left-0 md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full",
       `bg-${accentColor}-500`
     )}
-    variants={scaleAnimation}
-    whileInView="animate"
-    viewport={{ once: true }}
-    transition={{ duration: 0.5, delay }}
   />
 );
 
 interface PhaseCardProps {
   phase: Phase;
   isEven: boolean;
-  index: number;
   accentColor: string;
 }
 
-const PhaseCard = ({ phase, isEven, index, accentColor }: PhaseCardProps) => {
+const PhaseCard = ({ phase, isEven, accentColor }: PhaseCardProps) => {
   const Icon = phase.icon;
 
   return (
-    <motion.div
-      variants={fadeInUp}
-      initial="initial"
-      whileInView="animate"
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.2 }}
-      className="relative mb-8 md:mb-16"
-    >
+    <div className="relative mb-8 md:mb-16">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 pl-8 md:pl-0">
         <div
           className={cn(
             isEven ? "md:text-right md:col-span-1" : "md:col-start-2"
           )}
         >
-          <Card className="relative group hover:shadow-lg transition-all duration-300">
-            <CardHeader>
-              <div className="flex items-center gap-2 mb-2">
-                <Icon className={cn(`text-${accentColor}-500`, "h-5 w-5")} />
-                <span className="text-sm font-medium text-muted-foreground">
-                  {phase.date}
-                </span>
-              </div>
-              <CardTitle className="text-lg md:text-xl mb-2">
-                {phase.title}
-              </CardTitle>
-              <p className="text-sm text-muted-foreground">
-                {phase.description}
-              </p>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex flex-wrap gap-2">
-                  {phase.services.map((service) => (
-                    <span
-                      key={service}
-                      className={cn(
-                        "rounded-full px-3 py-1 text-xs font-medium",
-                        `bg-${accentColor}-100`,
-                        `text-${accentColor}-700`
-                      )}
-                    >
-                      {service}
-                    </span>
-                  ))}
-                </div>
-                <ul className="space-y-2">
-                  {phase.achievements.map((achievement) => (
-                    <li
-                      key={achievement}
-                      className="flex items-center text-sm gap-2"
-                    >
-                      <CheckCircle2
+          <motion.div whileHover={microHover}>
+            <Card className="relative">
+              <CardHeader>
+                <motion.div
+                  className="flex items-center gap-2 mb-2"
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Icon className={cn(`text-${accentColor}-500`, "h-5 w-5")} />
+                  <span className="text-sm font-medium text-muted-foreground">
+                    {phase.date}
+                  </span>
+                </motion.div>
+                <CardTitle className="text-lg md:text-xl mb-2">
+                  {phase.title}
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  {phase.description}
+                </p>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex flex-wrap gap-2">
+                    {phase.services.map((service) => (
+                      <motion.span
+                        key={service}
+                        whileHover={{ y: -2 }}
+                        transition={{ duration: 0.2 }}
                         className={cn(
-                          `text-${accentColor}-500`,
-                          "h-4 w-4 flex-shrink-0"
+                          "rounded-full px-3 py-1 text-xs font-medium",
+                          `bg-${accentColor}-100`,
+                          `text-${accentColor}-700`
                         )}
-                      />
-                      <span>{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </CardContent>
-          </Card>
+                      >
+                        {service}
+                      </motion.span>
+                    ))}
+                  </div>
+                  <ul className="space-y-2">
+                    {phase.achievements.map((achievement) => (
+                      <motion.li
+                        key={achievement}
+                        whileHover={{ x: 2 }}
+                        transition={{ duration: 0.2 }}
+                        className="flex items-center text-sm gap-2"
+                      >
+                        <CheckCircle2
+                          className={cn(
+                            `text-${accentColor}-500`,
+                            "h-4 w-4 flex-shrink-0"
+                          )}
+                        />
+                        <span>{achievement}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </div>
-      <TimelineNode accentColor={accentColor} delay={index * 0.2} />
-    </motion.div>
+      <TimelineNode accentColor={accentColor} />
+    </div>
   );
 };
 
@@ -363,13 +360,7 @@ const ProjectTimeline = ({ projectId }: ProjectTimelineProps) => {
 
   return (
     <div className="container mx-auto px-4 py-12 md:py-24">
-      <motion.div
-        variants={fadeInUp}
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true }}
-        className="text-center mb-8 md:mb-16"
-      >
+      <div className="text-center mb-8 md:mb-16">
         <h1
           className={cn(
             "text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight bg-clip-text text-transparent mb-4",
@@ -382,35 +373,44 @@ const ProjectTimeline = ({ projectId }: ProjectTimelineProps) => {
           {project.description}
         </p>
         <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8 mb-4">
-          <div className="flex items-center justify-center gap-2">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center justify-center gap-2"
+          >
             <Clock
               className={cn(`text-${project.accentColor}-500`, "h-5 w-5")}
             />
             <span>{project.duration}</span>
-          </div>
-          <div className="flex items-center justify-center gap-2">
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center justify-center gap-2"
+          >
             <Users
               className={cn(`text-${project.accentColor}-500`, "h-5 w-5")}
             />
             <span>{project.team}</span>
-          </div>
+          </motion.div>
         </div>
         {project.liveUrl && (
-          <a
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "inline-flex items-center gap-2 px-4 py-2 rounded-md transition-colors",
-              `bg-${project.accentColor}-500 hover:bg-${project.accentColor}-600`,
-              "text-white font-medium"
+              "inline-flex items-center gap-2 px-4 py-2 rounded-md",
+              "font-medium bg-accent"
             )}
           >
             View Live Site
             <ExternalLink className="h-4 w-4" />
-          </a>
+          </motion.a>
         )}
-      </motion.div>
+      </div>
 
       <div className="relative">
         <div
@@ -426,7 +426,6 @@ const ProjectTimeline = ({ projectId }: ProjectTimelineProps) => {
             key={phase.title}
             phase={phase}
             isEven={index % 2 === 0}
-            index={index}
             accentColor={project.accentColor}
           />
         ))}
