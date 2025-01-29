@@ -15,7 +15,7 @@ import {
 type ProjectTag =
   | "Next.js"
   | "TypeScript"
-  | "Web3"
+  | "Clerk"
   | "React"
   | "Node.js"
   | "MongoDB"
@@ -27,27 +27,17 @@ interface Project {
   image: string;
   link: string;
   tags: ProjectTag[];
-  id: "aje" | "nibo" | "beyou";
+  id: "tbc" | "nibo" | "beyou";
 }
 
 const projects: Project[] = [
   {
-    id: "aje",
-    title: "Aje",
-    description:
-      "An online marketplace for buying and selling products with crypto wallet integration.",
-    image: "/ajelogo.png",
-    link: "/aje",
-    tags: ["Next.js", "TypeScript", "Web3"],
-  },
-  {
-    id: "nibo",
-    title: "nibo",
-    description:
-      "A platform for wholesalers to manage products efficiently with real-time data for store locations.",
-    image: "/Nibo.svg",
-    link: "/nibo",
-    tags: ["React", "Node.js", "MongoDB"],
+    id: "tbc",
+    title: "TBC dashboard",
+    description: "A school dashboard to help manage all school activities.",
+    image: "/tbc-dashboard.png",
+    link: "/tbc",
+    tags: ["Next.js", "TypeScript", "Clerk"],
   },
   {
     id: "beyou",
@@ -57,6 +47,15 @@ const projects: Project[] = [
     image: "/image.png",
     link: "/be-you",
     tags: ["Next.js", "TypeScript", "AI"],
+  },
+  {
+    id: "nibo",
+    title: "nibo",
+    description:
+      "A platform for wholesalers to manage products efficiently with real-time data for store locations.",
+    image: "/Nibo.png",
+    link: "/nibo",
+    tags: ["React", "Node.js", "MongoDB"],
   },
 ] as const;
 
@@ -82,7 +81,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => (
             src={project.image}
             alt={`Thumbnail for ${project.title}`}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-110"
+            className="object-contain transition-transform duration-300 group-hover:scale-110"
           />
           {/* Image Overlay */}
           <div className="absolute inset-0 bg-black/10 transition-opacity duration-300 group-hover:opacity-0" />

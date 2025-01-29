@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 // Define valid project IDs
 const validProjects = {
-  aje: "aje",
+  tbc: "tbc",
   nibo: "nibo",
   "be-you": "beyou",
 } as const;
