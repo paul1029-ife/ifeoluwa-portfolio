@@ -43,18 +43,15 @@ export function AboutSection() {
             </Reveal>
             <Reveal>
               <p className="mt-4 text-lg text-muted-foreground">
-                I&apos;m a passionate Frontend Developer with expertise in
-                modern web technologies. My journey in web development started
-                with a curiosity about creating interactive and user-friendly
-                interfaces.
+                I&apos;m a 17-year-old Frontend Developer and Computer Science
+                student with 4 years of experience in web development.
               </p>
             </Reveal>
             <Reveal>
               <p className="mt-4 text-lg text-muted-foreground">
-                Currently, I&apos;m focused on building responsive web
-                applications using React, Next.js, and TypeScript. I&apos;m also
-                exploring the world of Web3 development and building
-                decentralized applications.
+                Currently developing enterprise-level applications using React,
+                Next.js, and TypeScript. Strong focus on UI/UX implementation,
+                component architecture, and performance optimization.
               </p>
             </Reveal>
             <Reveal>

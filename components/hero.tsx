@@ -3,14 +3,41 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { GithubIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
+import { GithubIcon, LinkedinIcon, Mail } from "lucide-react";
+
+const FloatingShape = ({ className }: { className: string }) => (
+  <motion.div
+    className={`absolute rounded-full dark:bg-gradient-to-br dark:from-primary/20 dark:to-primary/5 bg-gradient-to-br from-primary/10 to-primary/5 blur-3xl ${className}`}
+    animate={{
+      y: [0, -20, 0],
+      x: [0, 10, 0],
+      scale: [1, 1.1, 1],
+    }}
+    transition={{
+      duration: 8,
+      repeat: Infinity,
+      repeatType: "reverse",
+      ease: "easeInOut",
+    }}
+  />
+);
+
+const GridPattern = () => (
+  <div className="absolute inset-0 dark:bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)] bg-[linear-gradient(rgba(0,0,0,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]" />
+);
 
 export function HeroSection() {
   return (
     <section
       id="hero"
-      className="container relative flex min-h-screen items-center justify-center"
+      className="container relative flex min-h-screen items-center justify-center overflow-hidden"
     >
+      {/* Background Elements */}
+      <GridPattern />
+      <FloatingShape className="h-96 w-96 left-1/4 top-1/4 opacity-40" />
+      <FloatingShape className="h-64 w-64 right-1/4 bottom-1/4 opacity-30" />
+
+      {/* Content */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <motion.span
@@ -75,8 +102,6 @@ export function HeroSection() {
     </section>
   );
 }
-
-export default HeroSection;
 
 const SocialIcons = () => {
   const iconAnimation = {
@@ -154,15 +179,17 @@ const SocialIcons = () => {
         animate="rest"
       >
         <Link
-          href="https://x.com/theactual001"
-          aria-label="Twitter"
+          href="mailto:paul.agbogun@gmail.com"
+          aria-label="Email"
           className="block text-muted-foreground hover:text-primary transition-colors"
         >
           <motion.div variants={iconAnimation}>
-            <TwitterIcon className="h-6 w-6" />
+            <Mail className="h-6 w-6" />
           </motion.div>
         </Link>
       </motion.div>
     </motion.div>
   );
 };
+
+export default HeroSection;
