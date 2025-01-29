@@ -174,7 +174,7 @@ const projectsData: ProjectsDataType = {
     description:
       "An interactive learning platform with personalized user experiences",
     duration: "5 months",
-    team: "Frontend developer",
+    team: "CEO, Lead Developer",
     theme: "from-blue-500 to-blue-300",
     accentColor: "blue",
     phases: [
