@@ -38,7 +38,7 @@ interface ContentCardProps {
 
 const experiences: ExperienceData[] = [
   {
-    title: "Frontend Developer",
+    title: "Frontend Web Developer",
     company: "Aje",
     period: "2024 - Present",
     description: "Working on building responsive web applications Next.js",
@@ -51,7 +51,7 @@ const experiences: ExperienceData[] = [
     color: "from-blue-500/10 to-purple-500/10",
   },
   {
-    title: "Frontend Developer",
+    title: "Lead Frontend Developer",
     company: "Nibo",
     period: "2024 - Present",
     description:
