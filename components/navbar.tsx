@@ -2,11 +2,11 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Home, Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
+import { usePathname } from "next/navigation";
 const navItems = [
   { name: "Home", section: "hero" },
   { name: "About", section: "about" },
@@ -23,7 +23,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const menuRef = React.useRef<HTMLDivElement>(null);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
-
+  const pathName = usePathname();
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -124,27 +124,32 @@ export function Navbar() {
 
         {/* Mobile Navigation */}
         <div className="md:hidden">
-          <Button
-            ref={buttonRef}
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            <motion.div
-              key={isOpen as unknown as string}
-              initial={{ opacity: 0, rotate: isOpen ? 90 : -90 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              transition={{ duration: 0.3 }}
+          {pathName.length > 1 ? (
+            <Link href={"/"}>
+              <Home />
+            </Link>
+          ) : (
+            <Button
+              ref={buttonRef}
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsOpen(!isOpen)}
             >
-              {isOpen ? (
-                <X className="h-5 w-5" />
-              ) : (
-                <Menu className="h-5 w-5" />
-              )}
-              <span className="sr-only">Toggle menu</span>
-            </motion.div>
-          </Button>
-
+              <motion.div
+                key={isOpen as unknown as string}
+                initial={{ opacity: 0, rotate: isOpen ? 90 : -90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {isOpen ? (
+                  <X className="h-5 w-5" />
+                ) : (
+                  <Menu className="h-5 w-5" />
+                )}
+                <span className="sr-only">Toggle menu</span>
+              </motion.div>
+            </Button>
+          )}
           <AnimatePresence>
             {isOpen && (
               <motion.nav
