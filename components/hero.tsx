@@ -86,7 +86,7 @@ export function HeroSection() {
                 className="w-full transition-all hover:scale-105 hover:shadow-lg"
                 aria-label="View Portfolio"
               >
-                View Portfolio
+                View projects
               </Button>
             </Link>
             <Link href="/#contact" passHref>
