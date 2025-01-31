@@ -155,16 +155,7 @@ export function Navbar() {
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="fixed top-0 right-0 z-40 h-screen w-64 bg-background/95 p-6 backdrop-blur-lg shadow-lg"
               >
-                <div className="flex justify-end mb-4">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <X className="h-5 w-5" />
-                  </Button>
-                </div>
-                <div className="flex flex-col space-y-4">
+                <div className="flex flex-col space-y-4 pt-4">
                   {navItems.map((item) => (
                     <button
                       key={item.section}
