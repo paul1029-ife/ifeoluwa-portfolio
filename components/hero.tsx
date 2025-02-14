@@ -146,9 +146,10 @@ const SocialIcon = ({ href, ariaLabel, icon }: SocialIconProps) => {
     <motion.div initial="rest" whileHover="hover" whileTap="tap" animate="rest">
       <Link
         href={href}
+        rel="noopener noreferrer"
+        target="_blank"
         aria-label={ariaLabel}
         className="block text-muted-foreground hover:text-primary transition-colors"
-        rel="noopener noreferrer"
       >
         <motion.div variants={iconAnimation}>{icon}</motion.div>
       </Link>
