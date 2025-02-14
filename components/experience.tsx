@@ -56,7 +56,7 @@ const experiences: ExperienceData[] = [
     period: "2024 - Present",
     description:
       "Integrating third party api's (Google maps) and CRUD operations with GraphQl",
-    skills: ["MongoDB", "Express", "React", "Node.js"],
+    skills: ["GraphQl", "Google Clouds", "React"],
     highlights: [
       "Built a modern PWA",
       "Implemented Appolo GraphQl",
