@@ -17,8 +17,8 @@ type ProjectTag =
   | "TypeScript"
   | "Clerk"
   | "React"
-  | "Node.js"
-  | "MongoDB"
+  | "GraphQl"
+  | "Google Clouds"
   | "AI";
 
 interface Project {
@@ -32,14 +32,6 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: "tbc",
-    title: "TBC dashboard",
-    description: "A school dashboard to help manage all school activities.",
-    image: "/tbc-dashboard.png",
-    link: "/tbc",
-    tags: ["Next.js", "TypeScript", "Clerk"],
-  },
-  {
     id: "beyou",
     title: "BeYou",
     description:
@@ -49,13 +41,21 @@ const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "AI"],
   },
   {
+    id: "tbc",
+    title: "TBC dashboard",
+    description: "A school dashboard to help manage all school activities.",
+    image: "/tbc-dashboard.png",
+    link: "/tbc",
+    tags: ["Next.js", "TypeScript", "Clerk"],
+  },
+  {
     id: "nibo",
     title: "nibo",
     description:
       "A platform for wholesalers to manage products efficiently with real-time data for store locations.",
     image: "/Nibo.png",
     link: "/nibo",
-    tags: ["React", "Node.js", "MongoDB"],
+    tags: ["React", "Google Clouds", "GraphQl"],
   },
 ] as const;
 
