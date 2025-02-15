@@ -167,7 +167,7 @@ const projectsData: ProjectsDataType = {
         ],
       },
     ],
-    liveUrl: "nibo.ng",
+    liveUrl: "https://15def98d.nibo-cim.pages.dev/",
   },
   beyou: {
     title: "BeYou",
