@@ -7,6 +7,7 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 const navItems = [
   { name: "Home", section: "hero" },
   { name: "About", section: "about" },
@@ -24,6 +25,24 @@ export function Navbar() {
   const menuRef = React.useRef<HTMLDivElement>(null);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const pathName = usePathname();
+  const isHomePage = pathName === "/";
+
+  // Reset active section when navigating back to home page
+  React.useEffect(() => {
+    if (isHomePage) {
+      const element = document.getElementById("hero");
+      if (
+        element &&
+        element.getBoundingClientRect().top <= window.innerHeight / 2
+      ) {
+        setActiveSection("hero");
+      }
+    } else {
+      // If not on home page, don't highlight any section
+      setActiveSection("");
+    }
+  }, [pathName, isHomePage]);
+
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -52,6 +71,9 @@ export function Navbar() {
   }, []);
 
   React.useEffect(() => {
+    // Only set up intersection observer on home page
+    if (!isHomePage) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -72,9 +94,15 @@ export function Navbar() {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [isHomePage]);
 
   const scrollToSection = (sectionId: string) => {
+    // If not on home page, navigate to home first then scroll
+    if (!isHomePage) {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -94,6 +122,7 @@ export function Navbar() {
         <Link
           href={"/"}
           className="hidden md:block text-lg font-bold text-primary"
+          onClick={() => isHomePage && scrollToSection("hero")}
         >
           &lt; paul1029-ife /&gt;
         </Link>
@@ -105,13 +134,13 @@ export function Navbar() {
               key={item.section}
               onClick={() => scrollToSection(item.section)}
               className={`relative text-sm font-medium transition-colors hover:text-primary ${
-                activeSection === item.section
+                activeSection === item.section && isHomePage
                   ? "text-primary"
                   : "text-muted-foreground"
               }`}
             >
               {item.name}
-              {activeSection === item.section && (
+              {activeSection === item.section && isHomePage && (
                 <motion.span
                   className="absolute bottom-0 left-0 h-[2px] w-full bg-primary"
                   layoutId="activeSection"
@@ -126,7 +155,7 @@ export function Navbar() {
         <div className="md:hidden">
           {pathName.length > 1 ? (
             <Link href={"/"}>
-              <Home />
+              <Home className="h-5 w-5" />
             </Link>
           ) : (
             <Button
@@ -169,7 +198,7 @@ export function Navbar() {
                         setIsOpen(false);
                       }}
                       className={`text-left text-sm font-medium transition-colors hover:text-primary ${
-                        activeSection === item.section
+                        activeSection === item.section && isHomePage
                           ? "text-primary"
                           : "text-muted-foreground"
                       }`}
