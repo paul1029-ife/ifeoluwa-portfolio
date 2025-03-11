@@ -25,14 +25,14 @@ import { cn } from "@/lib/utils";
 
 const projectsData: ProjectsDataType = {
   tbc: {
-    title: "TBC Dashboard",
+    title: "Scoolr",
     description:
       "A modern school management dashboard with student performance tracking and administrative tools",
     duration: "3 months",
     team: "Solo project",
     theme: "from-violet-500 to-violet-300",
     accentColor: "violet",
-    liveUrl: "https://tbc-dashboard.vercel.app",
+    liveUrl: "https://scoolr.vercel.app",
     phases: [
       {
         title: "UI/UX Design",
