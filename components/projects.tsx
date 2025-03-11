@@ -27,7 +27,7 @@ interface Project {
   image: string;
   link: string;
   tags: ProjectTag[];
-  id: "tbc" | "nibo" | "beyou";
+  id: "scoolr" | "nibo" | "beyou";
 }
 
 const projects: Project[] = [
@@ -41,10 +41,10 @@ const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "AI"],
   },
   {
-    id: "tbc",
-    title: "TBC dashboard",
+    id: "scoolr",
+    title: "Scoolr",
     description: "A school dashboard to help manage all school activities.",
-    image: "/tbc-dashboard.png",
+    image: "/dashboard-mockup.png",
     link: "/tbc",
     tags: ["Next.js", "TypeScript", "Clerk"],
   },
