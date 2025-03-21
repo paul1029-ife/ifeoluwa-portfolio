@@ -73,8 +73,8 @@ export function HeroSection() {
             user-friendly and scalable web applications using React, Next.js,
             and TypeScript. I write{" "}
             <Link
-              href={"/blogs"}
-              className="font-bold text-white underline tracking-wide"
+              href="/blogs"
+              className="font-bold text-primary/80 underline decoration-primary/30 underline-offset-2 hover:decoration-primary transition-all"
             >
               blogs
             </Link>{" "}
