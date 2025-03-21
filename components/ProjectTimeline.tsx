@@ -21,7 +21,7 @@ import {
 // Type definitions
 type Phase = {
   title: string;
-  icon: React.ElementType;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
   date: string;
   services: string[];
   description: string;

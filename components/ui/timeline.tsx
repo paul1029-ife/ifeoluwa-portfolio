@@ -1,8 +1,9 @@
 "use client";
-import { Clock, ExternalLink, User } from "lucide-react";
+import { ArrowLeft, Clock, ExternalLink, User } from "lucide-react";
 import { Project } from "../ProjectTimeline";
 import { useScroll, useTransform, motion } from "motion/react";
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface TimelineEntry {
   title: string;
@@ -19,7 +20,7 @@ export const Timeline = ({
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
-
+  const router = useRouter();
   useEffect(() => {
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
@@ -44,6 +45,9 @@ export const Timeline = ({
         <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden">
           <div className={`h-2 bg-gradient-to-r ${project.theme}`}></div>
           <div className="p-6 md:p-8">
+            <div onClick={() => router.push("/")} role="button">
+              <ArrowLeft />
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black dark:text-white">
               How I built{" "}
               <span className={`text-${project.accentColor}-500`}>
