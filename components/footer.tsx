@@ -3,7 +3,7 @@ export function Footer() {
     <footer className="border-t py-6">
       <div className="container flex items-center justify-center px-4">
         <p className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Ifeoluwa Agbogun. All rights reserved.
+          © 2025 Ifeoluwa Agbogun. All rights reserved.
         </p>
       </div>
     </footer>

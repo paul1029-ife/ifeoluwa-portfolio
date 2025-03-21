@@ -2,18 +2,18 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Card } from "@/components/ui/card";
 import {
   Blocks,
   Component,
   Palette,
-  //Library,
+  Library,
   Construction,
   Terminal,
   Globe,
-  // Server,
+  Server,
   Code2,
 } from "lucide-react";
+import { CardSpotlight } from "./ui/card-spotlight";
 
 const skills = [
   {
@@ -45,18 +45,18 @@ const skills = [
       "Animations",
     ],
   },
-  // {
-  //   name: "Node.js",
-  //   category: "Backend",
-  //   icon: Server,
-  //   technologies: ["Express", "Middleware", "Authentication"],
-  // },
-  // {
-  //   name: "Database",
-  //   category: "Backend",
-  //   icon: Library,
-  //   technologies: ["MongoDB", "SQL", "Prisma"],
-  // },
+  {
+    name: "Node.js",
+    category: "Backend",
+    icon: Server,
+    technologies: ["Express", "Middleware", "Libuv"],
+  },
+  {
+    name: "Database",
+    category: "Backend",
+    icon: Library,
+    technologies: ["MongoDB", "SQL", "Prisma"],
+  },
   {
     name: "Development Tools",
     category: "Tools",
@@ -124,7 +124,7 @@ export function SkillsSection() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
-                      <Card className="group relative h-full overflow-hidden p-6 transition-all hover:border-primary hover:shadow-lg">
+                      <CardSpotlight className="group relative h-full overflow-hidden p-6 transition-all hover:border-primary hover:shadow-lg">
                         <div className="relative z-10">
                           <div className="mb-4 flex items-center gap-3">
                             <span className="text-primary">
@@ -150,7 +150,7 @@ export function SkillsSection() {
                           </div>
                         </div>
                         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                      </Card>
+                      </CardSpotlight>
                     </motion.div>
                   ))}
               </div>

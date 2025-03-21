@@ -17,8 +17,8 @@ type ProjectTag =
   | "TypeScript"
   | "Clerk"
   | "React"
-  | "GraphQl"
-  | "Google Clouds"
+  | "MongoDB"
+  | "ExpressJs"
   | "AI";
 
 interface Project {
@@ -27,7 +27,7 @@ interface Project {
   image: string;
   link: string;
   tags: ProjectTag[];
-  id: "scoolr" | "nibo" | "beyou";
+  id: "scoolr" | "sparkedge" | "beyou";
 }
 
 const projects: Project[] = [
@@ -49,13 +49,13 @@ const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "Clerk"],
   },
   {
-    id: "nibo",
-    title: "nibo",
+    id: "sparkedge",
+    title: "SparkEdge",
     description:
       "A platform for wholesalers to manage products efficiently with real-time data for store locations.",
-    image: "/Nibo.png",
-    link: "/nibo",
-    tags: ["React", "Google Clouds", "GraphQl"],
+    image: "/sparkedge.png",
+    link: "/sparkedge",
+    tags: ["React", "MongoDB", "ExpressJs"],
   },
 ] as const;
 

@@ -2,7 +2,7 @@
 
 import { LucideIcon } from "lucide-react";
 
-export type ProjectId = "tbc" | "nibo" | "beyou";
+export type ProjectId = "tbc" | "sparkedge" | "beyou";
 
 export type ServiceType =
   | "Frontend Development"
