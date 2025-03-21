@@ -26,6 +26,7 @@ type Phase = {
   services: string[];
   description: string;
   achievements: string[];
+  imageUrl?: string;
 };
 
 export type Project = {
@@ -67,6 +68,7 @@ const projectsData: ProjectsDataType = {
           "Component architecture planning",
           "User interface prototyping",
         ],
+        imageUrl: "/scoolr/financial-dashboard.png",
       },
       {
         title: "Core Components",
@@ -79,6 +81,7 @@ const projectsData: ProjectsDataType = {
           "Data grid implementation",
           "Form component library",
         ],
+        imageUrl: "/scoolr/dashboard-mockup.png",
       },
       {
         title: "Dashboard Features",
@@ -91,6 +94,7 @@ const projectsData: ProjectsDataType = {
           "Attendance management system",
           "Grade visualization",
         ],
+        imageUrl: "/scoolr/og-image.png",
       },
       {
         title: "Data Integration",
@@ -138,6 +142,7 @@ const projectsData: ProjectsDataType = {
           "Task and milestone tracking",
           "Role-based access control",
         ],
+        imageUrl: "/sparkedge/sparkedge1.png",
       },
       {
         title: "Fundraising System",
@@ -150,6 +155,7 @@ const projectsData: ProjectsDataType = {
           "Contribution tracking",
           "Secure wallet integration",
         ],
+        imageUrl: "/sparkedge/sparkedge2.png",
       },
       {
         title: "Talent Marketplace",
@@ -210,6 +216,7 @@ const projectsData: ProjectsDataType = {
           "Routing system setup",
           "State management planning",
         ],
+        imageUrl: "/beyou/beyou1.png",
       },
       {
         title: "Learning Interface",
@@ -222,6 +229,7 @@ const projectsData: ProjectsDataType = {
           "Progress tracking interface",
           "Learning path visualization",
         ],
+        imageUrl: "/beyou/beyou2.png",
       },
       {
         title: "Interactive Features",
@@ -234,6 +242,7 @@ const projectsData: ProjectsDataType = {
           "Interactive quizzes",
           "Progress animations",
         ],
+        imageUrl: "/beyou/beyou3.png",
       },
       {
         title: "User Experience",
@@ -263,13 +272,12 @@ const projectsData: ProjectsDataType = {
     liveUrl: "https://be-you-six.vercel.app",
   },
 };
-
 const PhaseContent = ({ phase }: { phase: Phase }) => {
   const Icon = phase.icon;
 
   return (
-    <div>
-      <div className="flex items-start gap-3 mb-3">
+    <article className="phase-content">
+      <header className="flex items-start gap-3 mb-4">
         <div className="bg-neutral-100 dark:bg-neutral-800 p-2 rounded-md">
           <Icon className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
         </div>
@@ -281,40 +289,36 @@ const PhaseContent = ({ phase }: { phase: Phase }) => {
             {phase.date}
           </p>
         </div>
-      </div>
+      </header>
 
-      <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+      <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-5">
         {phase.description}
       </p>
 
-      <div className="mb-8">
-        {phase.achievements.map((achievement, i) => (
-          <div
-            key={i}
-            className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm"
-          >
-            ✅ {achievement}
-          </div>
-        ))}
-      </div>
+      {phase.achievements.length > 0 && (
+        <ul className="mb-6 space-y-2">
+          {phase.achievements.map((achievement, i) => (
+            <li
+              key={i}
+              className="flex gap-2 items-start text-neutral-700 dark:text-neutral-300 text-xs md:text-sm"
+            >
+              <span className="flex-shrink-0">✅</span>
+              <span>{achievement}</span>
+            </li>
+          ))}
+        </ul>
+      )}
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="phase-image">
         <Image
-          src="/sparkedge/sparkedge1.png"
-          alt="Phase screenshot 1"
-          width={400}
-          height={320}
-          className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-        />
-        <Image
-          src="/beyou/beyou1.png"
-          alt="Phase screenshot 2"
+          src={phase.imageUrl || "/dashboard-mockup.png"}
+          alt={`Screenshot for ${phase.title}`}
           width={400}
           height={320}
           className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
         />
       </div>
-    </div>
+    </article>
   );
 };
 

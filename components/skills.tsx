@@ -77,7 +77,7 @@ const skills = [
   },
 ];
 
-const categories = ["Frontend", "Tools"];
+const categories = ["Frontend", "Backend", "Tools"];
 
 export function SkillsSection() {
   return (

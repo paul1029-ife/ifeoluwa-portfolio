@@ -27,7 +27,6 @@ export function Navbar() {
   const pathName = usePathname();
   const isHomePage = pathName === "/";
 
-  // Reset active section when navigating back to home page
   React.useEffect(() => {
     if (isHomePage) {
       const element = document.getElementById("hero");
@@ -38,7 +37,6 @@ export function Navbar() {
         setActiveSection("hero");
       }
     } else {
-      // If not on home page, don't highlight any section
       setActiveSection("");
     }
   }, [pathName, isHomePage]);
@@ -71,7 +69,6 @@ export function Navbar() {
   }, []);
 
   React.useEffect(() => {
-    // Only set up intersection observer on home page
     if (!isHomePage) return;
 
     const observer = new IntersectionObserver(
@@ -83,7 +80,7 @@ export function Navbar() {
         });
       },
       {
-        rootMargin: "-50% 0px -50% 0px", // Only consider middle 50% of viewport
+        rootMargin: "-50% 0px -50% 0px",
         threshold: 0,
       }
     );
@@ -97,7 +94,6 @@ export function Navbar() {
   }, [isHomePage]);
 
   const scrollToSection = (sectionId: string) => {
-    // If not on home page, navigate to home first then scroll
     if (!isHomePage) {
       window.location.href = `/#${sectionId}`;
       return;
@@ -129,26 +125,27 @@ export function Navbar() {
 
         {/* Desktop Navigation */}
         <nav className="hidden space-x-6 md:flex">
-          {navItems.map((item) => (
-            <button
-              key={item.section}
-              onClick={() => scrollToSection(item.section)}
-              className={`relative text-sm font-medium transition-colors hover:text-primary ${
-                activeSection === item.section && isHomePage
-                  ? "text-primary"
-                  : "text-muted-foreground"
-              }`}
-            >
-              {item.name}
-              {activeSection === item.section && isHomePage && (
-                <motion.span
-                  className="absolute bottom-0 left-0 h-[2px] w-full bg-primary"
-                  layoutId="activeSection"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-            </button>
-          ))}
+          {isHomePage &&
+            navItems.map((item) => (
+              <button
+                key={item.section}
+                onClick={() => scrollToSection(item.section)}
+                className={`relative text-sm font-medium transition-colors hover:text-primary ${
+                  activeSection === item.section && isHomePage
+                    ? "text-primary"
+                    : "text-muted-foreground"
+                }`}
+              >
+                {item.name}
+                {activeSection === item.section && isHomePage && (
+                  <motion.span
+                    className="absolute bottom-0 left-0 h-[2px] w-full bg-primary"
+                    layoutId="activeSection"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+              </button>
+            ))}
         </nav>
 
         {/* Mobile Navigation */}

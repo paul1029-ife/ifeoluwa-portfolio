@@ -23,7 +23,7 @@ export function AboutSection() {
               className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-xl lg:max-w-none"
             >
               <Image
-                src="/person.jpg"
+                src="/about.jpg"
                 alt="Profile"
                 fill
                 className="object-cover"
