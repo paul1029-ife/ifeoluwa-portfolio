@@ -1,15 +1,18 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { client } from "./contentful";
 
 export async function getAllBlogPosts() {
   const response = await client.getEntries({
     content_type: "blogPost",
-    order: "-sys.createdAt",
+    //@ts-ignore
+    order: `-sys.createdAt`,
   });
 
   return response.items;
 }
 
-export async function getBlogPostBySlug(slug) {
+export async function getBlogPostBySlug(slug: any) {
   const response = await client.getEntries({
     content_type: "blogPost",
     "fields.slug": slug,

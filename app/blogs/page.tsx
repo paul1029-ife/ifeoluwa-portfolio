@@ -8,12 +8,12 @@ export default async function BlogPage() {
 
   return (
     <div className="pt-24 h-screen">
-      <h1 className="text-3xl font-bold mb-8">Blog Posts</h1>
+      <h1 className="text-3xl font-bold mb-8">My Blog Posts</h1>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <Link
-            href={`/blog/${post.fields.slug}`}
+            href={`/blogs/${post.fields.slug}`}
             key={post.sys.id}
             className="block border rounded-lg p-6 hover:shadow-lg transition-shadow"
           >
