@@ -71,7 +71,14 @@ export function HeroSection() {
           >
             A Frontend Developer based in Nigeria, I specialize in crafting
             user-friendly and scalable web applications using React, Next.js,
-            and TypeScript.
+            and TypeScript. I write{" "}
+            <Link
+              href={"/blogs"}
+              className="font-bold text-white underline tracking-wide"
+            >
+              blogs
+            </Link>{" "}
+            too
           </motion.p>
 
           <motion.div
