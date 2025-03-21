@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 // Define valid project IDs
 const validProjects = {
   tbc: "tbc",
-  nibo: "nibo",
+  sparkedge: "sparkedge",
   "be-you": "beyou",
 } as const;
 
