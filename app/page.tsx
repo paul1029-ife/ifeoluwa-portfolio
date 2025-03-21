@@ -7,7 +7,7 @@ import { AboutSection } from "@/components/about";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-20 pb-20">
+    <div className="flex items-center justify-center flex-col gap-20 pb-20">
       <HeroSection />
       <AboutSection />
       <SkillsSection />

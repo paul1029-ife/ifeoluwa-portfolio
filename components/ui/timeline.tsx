@@ -41,13 +41,18 @@ export const Timeline = ({
       className="w-full bg-white dark:bg-neutral-950 font-sans md:px-10"
       ref={containerRef}
     >
-      <div className="pt-24">
+      <div className="px-3 md:px-0 pt-24">
         <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden">
           <div className={`h-2 bg-gradient-to-r ${project.theme}`}></div>
           <div className="p-6 md:p-8">
-            <div onClick={() => router.push("/")} role="button">
+            <div
+              onClick={() => router.push("/")}
+              role="button"
+              className="mb-4 inline-flex cursor-pointer"
+            >
               <ArrowLeft />
             </div>
+
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black dark:text-white">
               How I built{" "}
               <span className={`text-${project.accentColor}-500`}>
@@ -60,7 +65,6 @@ export const Timeline = ({
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              {/* Project Duration */}
               <div className="flex items-center space-x-3">
                 <div className="bg-gray-100 dark:bg-gray-800 p-2 rounded-lg">
                   <Clock className="w-5 h-5 text-gray-500 dark:text-gray-400" />
@@ -75,7 +79,6 @@ export const Timeline = ({
                 </div>
               </div>
 
-              {/* Team */}
               <div className="flex items-center space-x-3">
                 <div className="bg-gray-100 dark:bg-gray-800 p-2 rounded-lg">
                   <User className="w-5 h-5 text-gray-500 dark:text-gray-400" />
@@ -89,8 +92,6 @@ export const Timeline = ({
                   </p>
                 </div>
               </div>
-
-              {/* Live URL */}
               {project.liveUrl && (
                 <div className="flex items-center space-x-3">
                   <div className="bg-gray-100 dark:bg-gray-800 p-2 rounded-lg">
