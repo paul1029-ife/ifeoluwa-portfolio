@@ -58,7 +58,7 @@ export default function RootLayout({
       <body className={playfairDisplay.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="black"
           enableSystem
           disableTransitionOnChange
         >
