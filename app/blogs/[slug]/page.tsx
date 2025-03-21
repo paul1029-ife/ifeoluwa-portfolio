@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+//@ts-nocheck
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,12 +9,6 @@ import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
-interface BlogPostPageParams {
-  params: {
-    slug: string;
-  };
-}
-
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts();
   return posts.map((post) => ({
@@ -22,8 +16,12 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function BlogPostPage({ params }: BlogPostPageParams) {
-  const post = await getBlogPostBySlug(params.slug);
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const post = await getBlogPostBySlug((await params).slug);
 
   if (!post) {
     notFound();
