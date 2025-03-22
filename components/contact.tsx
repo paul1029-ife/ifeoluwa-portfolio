@@ -107,7 +107,7 @@ export function ContactSection() {
               <div className="w-full text-center md:text-left">
                 <h3 className="text-2xl font-semibold">Based In</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Lagos State, LA
+                  Lagos State, NG-LA
                   <br />
                   Nigeria
                 </p>
