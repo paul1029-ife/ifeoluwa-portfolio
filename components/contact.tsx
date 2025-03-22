@@ -84,7 +84,7 @@ export function ContactSection() {
                           alt="X Logo"
                           width={20}
                           height={20}
-                          className="h-5 w-5"
+                          className="h-5 w-5 dark:invert"
                         />
                       ) : (
                         <link.icon className="h-5 w-5" />
