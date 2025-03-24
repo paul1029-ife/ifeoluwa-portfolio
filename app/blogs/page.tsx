@@ -2,8 +2,7 @@
 import Link from "next/link";
 import { getAllBlogPosts } from "@/lib/api";
 
-export const revalidate = 60; // Revalidate every 60 seconds
-
+export const revalidate = 60;
 export default async function BlogPage() {
   const posts = await getAllBlogPosts();
 
