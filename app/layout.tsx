@@ -1,4 +1,4 @@
-import { Syne } from "next/font/google";
+import { Lato } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -6,7 +6,7 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
 import "./globals.css";
 
-const syne = Syne({ subsets: ["latin"] });
+const lato = Lato({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata = {
   metadataBase: new URL("https://ifeoluwa-portfolio-five.vercel.app"),
@@ -55,7 +55,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={syne.className}>
+      <body className={lato.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
