@@ -152,7 +152,7 @@ export default async function BlogPostPage({
   };
 
   return (
-    <div className="max-w-3xl mx-auto pt-24">
+    <div className="max-w-3xl mx-auto pt-16 md:pt-24">
       <Link href="/blogs" className="text-blue-600 hover:underline mb-4 block">
         ← Back to all posts
       </Link>
