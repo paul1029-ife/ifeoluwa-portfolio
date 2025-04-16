@@ -9,7 +9,7 @@ import "./globals.css";
 const lato = Lato({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata = {
-  metadataBase: new URL("https://ifeoluwa-portfolio-five.vercel.app"),
+  metadataBase: new URL("https://ifeoluwa.tech"),
   title: "Ifeoluwa's Portfolio",
   description: "Portfolio showcasing frontend development skills and projects",
   keywords: [
@@ -28,7 +28,7 @@ export const metadata = {
     title: "Ifeoluwa's Portfolio",
     description:
       "Showcasing Ifeoluwa's skills, projects, and expertise in frontend development.",
-    url: "https://ifeoluwa-portfolio-five.vercel.app",
+    url: "https://ifeoluwa.tech/",
     type: "website",
     images: [
       {
@@ -44,7 +44,7 @@ export const metadata = {
     title: "Ifeoluwa's Portfolio",
     description:
       "Discover Ifeoluwa's work and projects in frontend development.",
-    images: ["/images/og-image.jpeg"], // Resolved with metadataBase
+    images: ["/images/og-image.jpeg"],
   },
 };
 
