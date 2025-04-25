@@ -10,30 +10,33 @@ const lato = Lato({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata = {
   metadataBase: new URL("https://ifeoluwa.tech"),
-  title: "Ifeoluwa's Portfolio",
-  description: "Portfolio showcasing frontend development skills and projects",
+  title: "Ifeoluwa Agbogun | Frontend Developer Portfolio",
+  description:
+    "Explore the portfolio of Ifeoluwa Agbogun — a frontend developer skilled in React, TypeScript, and modern web technologies. View projects, case studies, and development expertise.",
   keywords: [
-    "Ifeoluwa",
+    "Ifeoluwa Agbogun",
     "Frontend Developer",
-    "Portfolio",
-    "Web Development",
+    "Web Developer",
+    "React Developer",
+    "TypeScript",
     "JavaScript",
-    "React",
-    "Projects",
-    "Tech Skills",
-    "Developer Portfolio",
+    "Software Engineer",
+    "Web Portfolio",
+    "Frontend Projects",
+    "UI Developer",
+    "Frontend Development",
   ],
   author: "Ifeoluwa Agbogun",
   openGraph: {
-    title: "Ifeoluwa's Portfolio",
+    title: "Ifeoluwa Agbogun | Frontend Developer Portfolio",
     description:
-      "Showcasing Ifeoluwa's skills, projects, and expertise in frontend development.",
+      "Dive into Ifeoluwa Agbogun’s professional portfolio featuring modern frontend development, UI design, and full-stack projects.",
     url: "https://ifeoluwa.tech/",
     type: "website",
     images: [
       {
-        url: "/images/og-image.jpeg", // Resolved with metadataBase
-        alt: "Ifeoluwa's Portfolio",
+        url: "/images/og-image.jpeg",
+        alt: "Ifeoluwa Agbogun's Portfolio Screenshot",
         width: 1200,
         height: 630,
       },
@@ -41,9 +44,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ifeoluwa's Portfolio",
+    title: "Ifeoluwa Agbogun | Frontend Developer Portfolio",
     description:
-      "Discover Ifeoluwa's work and projects in frontend development.",
+      "Discover modern web development projects and skills by Ifeoluwa Agbogun, a frontend developer proficient in React and TypeScript.",
     images: ["/images/og-image.jpeg"],
   },
 };
