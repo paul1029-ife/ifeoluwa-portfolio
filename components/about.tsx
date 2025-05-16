@@ -50,9 +50,8 @@ export function AboutSection() {
               <div className="space-y-4">
                 <Reveal>
                   <p className="text-lg text-muted-foreground">
-                    I&apos;m a frontend heavy Software Developer and Computer
-                    Science student with 4 years of experience in web
-                    development.
+                    I&apos;m a frontend heavy Software Developer with 4 years of
+                    experience in web development.
                   </p>
                 </Reveal>
 
