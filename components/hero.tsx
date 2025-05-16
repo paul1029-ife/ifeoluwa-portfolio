@@ -69,7 +69,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            A Frontend Developer based in Nigeria, I specialize in crafting
+            A Software Developer based in Nigeria, I specialize in crafting
             user-friendly and scalable web applications using React, Next.js,
             and TypeScript. I write{" "}
             <Link
